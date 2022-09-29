@@ -6,6 +6,7 @@
   "dockerFile": "../Dockerfile",
   "workspaceFolder": "/go/src/app",
   "forwardPorts": [3000],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/go/src/app,type=bind",
   "customizations": {
     "vscode": {
       "extensions": [
