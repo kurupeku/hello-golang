@@ -1,0 +1,33 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  IMAGE_NAME: hello-golang:latest
+  PACKAGE: '{{default "..." .PACKAGE}}'
+
+tasks:
+  default:
+    deps:
+      - task: test
+
+  test:
+    cmds:
+      - go test -v ./{{.PACKAGE}}
+
+  docker-build:
+    cmds:
+      - docker buildx build --tag {{.IMAGE_NAME}} .
+
+  docker-test:
+    cmds:
+      - docker run --rm -v ${PWD}:/go/src/app {{.IMAGE_NAME}} go test -v ./{{.PACKAGE}}
+
+  docker-build-test:
+    cmds:
+      - task: docker-build
+      - task: docker-test
+
+  docker-prune:
+    cmds:
+      - docker system prune -f
