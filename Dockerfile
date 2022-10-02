@@ -18,6 +18,7 @@ RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.l
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
   && chsh -s /bin/zsh \
+  && go install github.com/go-task/task/v3/cmd/task@latest \
   && go install golang.org/x/tools/gopls@latest \
   && go install honnef.co/go/tools/cmd/staticcheck@latest \
   && go install golang.org/x/tools/cmd/goimports@latest \
