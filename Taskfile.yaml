@@ -4,7 +4,6 @@ version: "3"
 
 vars:
   IMAGE_NAME: hello-golang:latest
-  PACKAGE: '{{default "..." .PACKAGE}}'
 
 tasks:
   default:
@@ -13,15 +12,23 @@ tasks:
 
   test:
     cmds:
-      - go test -v ./{{.PACKAGE}}
+      - go test -v ./{{.CLI_ARGS | default "..."}}
 
   docker-build:
     cmds:
       - docker buildx build --tag {{.IMAGE_NAME}} .
 
+  docker-bash:
+    cmds:
+      - docker run -it --rm -v ${PWD}:/go/src/app {{.IMAGE_NAME}} bash
+
+  docker-zsh:
+    cmds:
+      - docker run -it --rm -v ${PWD}:/go/src/app {{.IMAGE_NAME}} zsh
+
   docker-test:
     cmds:
-      - docker run --rm -v ${PWD}:/go/src/app {{.IMAGE_NAME}} go test -v ./{{.PACKAGE}}
+      - docker run --rm -v ${PWD}:/go/src/app {{.IMAGE_NAME}} go test -v ./{{.CLI_ARGS | default "..."}}
 
   docker-build-test:
     cmds:
