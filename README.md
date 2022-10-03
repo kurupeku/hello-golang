@@ -2,6 +2,10 @@
 
 Subjects for learning golang on the "A Tour of Go"
 
+## Pages
+
+- https://kurupeku.github.io/hello-golang/
+
 ## Get Started
 
 ### タスクランナーのインストール
