@@ -52,3 +52,9 @@ tasks:
     cmds:
       - docker system prune -f
     silent: true
+
+  marp:
+    cmds:
+      - docker run --rm -v $PWD/assets/marp:/home/marp/app/ -e LANG=$LANG marpteam/marp-cli slide-deck.md {{.CLI_ARGS}}
+      - mv $PWD/assets/marp/**.html public/marp/
+    silent: true
