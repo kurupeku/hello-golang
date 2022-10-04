@@ -1,10 +1,13 @@
-name: Testing Go
+name: Testing Exam 01
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - "**.go"
+      - "subject/exam01/**.go"
+
+env:
+  TARGET: exam01
 
 jobs:
   build:
@@ -18,4 +21,4 @@ jobs:
           go-version-file: go.mod
 
       - name: Go Test
-        run: go test -v ./...
+        run: go test -v ./subject/${TARGET}
