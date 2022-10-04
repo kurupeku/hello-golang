@@ -21,5 +21,5 @@ func Taxi(distance string) (int, int) {
 	times := calc / perDistance
 	price := firstPrice + perPrice*times
 
-	return price, int(float64(price) * 1.2)
+	return price, price * 120 / 100
 }
