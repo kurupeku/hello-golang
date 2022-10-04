@@ -1,4 +1,4 @@
-package exam01
+package chapter01
 
 import (
 	"testing"
