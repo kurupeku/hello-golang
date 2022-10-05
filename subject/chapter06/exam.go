@@ -1,9 +1,10 @@
 package chapter06
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
+
+	"github.com/kurupeku/hello-golang/helper"
 )
 
 type AhoNumber int
@@ -13,7 +14,7 @@ func (n AhoNumber) String() string {
 }
 
 func (n AhoNumber) aho() string {
-	return fmt.Sprintf("%d aho", n)
+	return helper.AhoString(int(n))
 }
 
 func (n AhoNumber) Call() string {
