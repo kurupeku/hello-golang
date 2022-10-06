@@ -1,13 +1,24 @@
+<<<<<<<< HEAD:.github/workflows/chapter00_test.yml
 name: Testing Chapter 00
+========
+name: Testing Chapter 01
+>>>>>>>> e98c5f1 (第1回の課題を実装 (#18)):.github/workflows/chapter01_test.yml
 
 on:
   workflow_dispatch:
   push:
     paths:
+<<<<<<<< HEAD:.github/workflows/chapter00_test.yml
       - "subject/chapter00/**.go"
 
 env:
   TARGET: chapter00
+========
+      - "subject/chapter01/**.go"
+
+env:
+  TARGET: chapter01
+>>>>>>>> e98c5f1 (第1回の課題を実装 (#18)):.github/workflows/chapter01_test.yml
 
 jobs:
   testing:
@@ -21,4 +32,8 @@ jobs:
           go-version-file: go.mod
 
       - name: Go Test
+<<<<<<<< HEAD:.github/workflows/chapter00_test.yml
         run: go test -v ./subject/${TARGET}
+========
+        run: go test -v ./subject/${TARGET}
+>>>>>>>> e98c5f1 (第1回の課題を実装 (#18)):.github/workflows/chapter01_test.yml
