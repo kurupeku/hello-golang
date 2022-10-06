@@ -129,7 +129,4 @@ paginate: true
 3. Remote Development拡張をvscodeにインストール
 4. vscodeからDevContainerを起動し、コンテナ上でソースコードが閲覧・編集できることを確認
 5. vscodeのターミナル上からテストを実行してみる
-  + `task test chapter00`
-
----
-
+  + `task test -- subject/chapter00`
