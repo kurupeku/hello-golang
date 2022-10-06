@@ -76,51 +76,60 @@ paginate: true
 
 ---
 
-# 開発スタイルについて
+# 開発スタイル
 
-- 2つの開発スタイル
+- 開発スタイルによって環境構築作業が異なります。
   - ローカルの実行環境にGoをインストールして開発する場合
   - vscodeのDevContainers拡張機能を使ってDockerコンテナ上で開発する場合
 
 ---
 
-# 必要な作業
-
-## ローカルの実行環境にGoをインストールした開発する場合
-
-1. ローカル環境へのGoのインストール
-2. ローカル環境へのタスクランナー(go-task)インストール
-3. ローカル環境でテストを実行してみる
-
----
-
-# 必要な作業
-
-## vscodeのDevContainers拡張機能を使ってDockerコンテナ上で開発する場合
-
-1. vscodeをインストールし、DevContainers拡張をvscodeにインストール
-2. vscodeからDevContainerを起動し、コンテナ上でソースコードが閲覧・編集できることを確認
-3. vscodeのターミナル上からテストを実行してみる
-
----
-
 # DevContainersとは
 
-+ Dockerコンテナを起動させて、その中にあるソースコードを編集するvscodeの機能
++ Dockerコンテナを起動させて、コンテナ上にあるソースコードを直接編集するvscodeの機能
 + Dockerコンテナ起動時にローカル環境のソースコードをマウントさせることで、ローカル環境のファイルとの同期も取られる
-+ 例) WindowsのWSL2上にあるソースコードをDevContainersで編集する場合
-  + まずはWSL2上のプロジェクトをvscodeで起動させる
-  + 続いてDevContainersを起動させる
-    + プロジェクト上にあるDockerfileまたはdocker-compose.ymlからDockerコンテナを起動させる
-    + Dockerコンテナのどのディレクトリを展開するかを指定して、そのディレクトリ上のファイル編集をvscode上で実現する
-    + ローカルとコンテナ上のディレクトリのボリュームマウントが設定されている場合は、コンテナ上のファイル編集の結果がローカル環境のファイルに同期される
 
 ---
 
 # DevContainersの利点
 
-+ 開発環境をDockerfileに明記できるので、開発に必要なツールがインストールされた状態で開発を始められる
++ 開発環境をDockerfileやdocker-compose.ymlに明記できるので、開発に必要なツールがインストールされた状態で開発を始められる
   + 例えば今回の場合、Goやタスクランナー(go-task)は事前にインストール済み
 + devcontainer.jsonの設定で、vscodeの拡張機能も共通化できるようになる
+  + 開発環境を統一できる
++ 開発環境がコンテナ内で完結するので、ローカル環境を汚さずに開発ができる
 
 ---
+
+# 事前準備について
+
++ dockerコマンドを実行する環境を準備済みの前提です
+
+---
+
+# ローカルの実行環境にGoをインストールした開発する場合
+
+## 必要な作業
+
+1. ローカル環境へのGoのインストール [手順](https://go.dev/doc/install)
+2. ローカル環境へのタスクランナー(go-task)インストール [手順](https://taskfile.dev/installation/#go-modules)
+  + `go install github.com/go-task/task/v3/cmd/task@latest`
+3. [リポジトリ](https://github.com/kurupeku/hello-golang)をclone
+4. ローカル環境でテストを実行してみる
+  + `task docker-build-test chapter00`
+
+---
+
+# vscodeのDevContainers拡張機能を使ってDockerコンテナ上で開発する場合
+
+## 必要な作業
+
+1. [リポジトリ](https://github.com/kurupeku/hello-golang)をclone
+2. vscodeをインストールし、cloneしたリポジトリを開く
+3. Remote Development拡張をvscodeにインストール
+4. vscodeからDevContainerを起動し、コンテナ上でソースコードが閲覧・編集できることを確認
+5. vscodeのターミナル上からテストを実行してみる
+  + `task test chapter00`
+
+---
+
