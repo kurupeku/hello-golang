@@ -113,14 +113,14 @@ paginate: true
 
 1. ローカル環境へのGoのインストール [手順](https://go.dev/doc/install)
 2. ローカル環境へのタスクランナー(go-task)インストール [手順](https://taskfile.dev/installation/#go-modules)
-  - `go install github.com/go-task/task/v3/cmd/task@latest`
+`go install github.com/go-task/task/v3/cmd/task@latest`
 3. [リポジトリ](https://github.com/kurupeku/hello-golang)をclone
 4. cloneしたプロジェクトのルートディレクトリでローカル環境でテストを実行してみる
-  - ローカルで実行する場合
-    - `task test -- subject/chapter00`
-  - Docker上で実行する場合
-    - `task docker-build` (初回のみ)
-    - `task docker-test -- subject/chapter00`
+  a. ローカルで実行する場合
+  `task test -- subject/chapter00`
+  b. Docker上で実行する場合
+  `task docker-build` (初回のみ)
+  `task docker-test -- subject/chapter00`
 
 ---
 
@@ -134,4 +134,4 @@ paginate: true
 4. VSCodeの左下の `><` アイコンをクリックし `Reopen in Container` を選択
 5. コンテナ上でソースコードが閲覧・編集できることを確認
 6. VSCodeのターミナル上からテストを実行してみる
-  - `task test -- subject/chapter00`
+`task test -- subject/chapter00`
