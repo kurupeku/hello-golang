@@ -139,7 +139,7 @@ paginate: true
 
 ---
 
-# vscodeのDevContainers拡張機能を使ってDockerコンテナ上で開発する場合
+# VSCodeのDevContainers拡張機能を使ってDockerコンテナ上で開発する場合
 
 ## 必要な作業
 
