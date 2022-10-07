@@ -115,7 +115,7 @@ paginate: true
 2. ローカル環境へのタスクランナー(go-task)インストール [手順](https://taskfile.dev/installation/#go-modules)
   + `go install github.com/go-task/task/v3/cmd/task@latest`
 3. [リポジトリ](https://github.com/kurupeku/hello-golang)をclone
-4. ローカル環境でテストを実行してみる
+4. cloneしたプロジェクトのルートディレクトリでローカル環境でテストを実行してみる
   + `task docker-build-test chapter00`
 
 ---
