@@ -112,8 +112,20 @@ paginate: true
 ## 必要な作業
 
 1. ローカル環境へのGoのインストール [手順](https://go.dev/doc/install)
+  a. Linux(ログインシェルbash)の例
+  `rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.2.linux-amd64.tar.gz`
+  `vi ~/.bashrc`で"export PATH=$PATH:/usr/local/go/bin"を追記
+  `source ~/.bashrc`
+  `go version`
 2. ローカル環境へのタスクランナー(go-task)インストール [手順](https://taskfile.dev/installation/#go-modules)
 `go install github.com/go-task/task/v3/cmd/task@latest`
+
+---
+
+# ローカルの実行環境にGoをインストールした開発する場合
+
+## 必要な作業
+
 3. [リポジトリ](https://github.com/kurupeku/hello-golang)をclone
 4. cloneしたプロジェクトのルートディレクトリでローカル環境でテストを実行してみる
   a. ローカルで実行する場合
@@ -135,3 +147,5 @@ paginate: true
 5. コンテナ上でソースコードが閲覧・編集できることを確認
 6. VSCodeのターミナル上からテストを実行してみる
 `task test -- subject/chapter00`
+
+※DevContainerにGoの実行環境が内包されているので、Goのインストールは不要
