@@ -125,8 +125,9 @@ paginate: true
 ## 必要な作業
 
 1. [リポジトリ](https://github.com/kurupeku/hello-golang)をclone
-2. vscodeをインストールし、cloneしたリポジトリを開く
-3. Remote Development拡張をvscodeにインストール
-4. vscodeからDevContainerを起動し、コンテナ上でソースコードが閲覧・編集できることを確認
-5. vscodeのターミナル上からテストを実行してみる
+2. VSCodeをインストールし、cloneしたリポジトリを開く
+3. Remote Development拡張をVSCodeにインストール
+4. VSCodeの左下の `><` アイコンをクリックし `Reopen in Container` を選択
+5. コンテナ上でソースコードが閲覧・編集できることを確認
+6. VSCodeのターミナル上からテストを実行してみる
   + `task test -- subject/chapter00`
