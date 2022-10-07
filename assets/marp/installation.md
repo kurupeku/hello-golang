@@ -116,7 +116,11 @@ paginate: true
   + `go install github.com/go-task/task/v3/cmd/task@latest`
 3. [リポジトリ](https://github.com/kurupeku/hello-golang)をclone
 4. cloneしたプロジェクトのルートディレクトリでローカル環境でテストを実行してみる
-  + `task docker-build-test chapter00`
+  - ローカルで実行する場合
+    - `task test -- subject/chapter00`
+  - Docker上で実行する場合
+    - `task docker-build` (初回のみ)
+    - `task docker-test -- subject/chapter00`
 
 ---
 
