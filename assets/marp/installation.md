@@ -80,7 +80,7 @@ paginate: true
 
 - 開発スタイルによって環境構築作業が異なります。
   - ローカルの実行環境にGoをインストールして開発する場合
-  - vscodeのDevContainers拡張機能を使ってDockerコンテナ上で開発する場合
+  - VSCodeのDevContainers拡張機能を使ってDockerコンテナ上で開発する場合
 
 ---
 
