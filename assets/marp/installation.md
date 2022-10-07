@@ -86,24 +86,24 @@ paginate: true
 
 # DevContainersとは
 
-+ Dockerコンテナを起動させて、コンテナ上にあるソースコードを直接編集するVSCodeの機能
-+ Dockerコンテナ起動時にローカル環境のソースコードをマウントさせることで、ローカル環境のファイルとの同期も取られる
+- Dockerコンテナを起動させて、コンテナ上にあるソースコードを直接編集するVSCodeの機能
+- Dockerコンテナ起動時にローカル環境のソースコードをマウントさせることで、ローカル環境のファイルとの同期も取られる
 
 ---
 
 # DevContainersの利点
 
-+ 開発環境をDockerfileやdocker-compose.ymlに明記できるので、開発に必要なツールがインストールされた状態で開発を始められる
-  + 例えば今回の場合、Goの実行環境やタスクランナー(go-task)、開発用ツールなどが事前にインストール済み
-+ devcontainer.jsonの値を書き換えれば、vscodeの設定や拡張機能も共通化できるようになる
-  + 開発環境を統一できる
-+ 開発環境がコンテナ内で完結するので、ローカル環境を汚さずに開発ができる
+- 開発環境をDockerfileやdocker-compose.ymlに明記できるので、開発に必要なツールがインストールされた状態で開発を始められる
+  - 例えば今回の場合、Goの実行環境やタスクランナー(go-task)、開発用ツールなどが事前にインストール済み
+- devcontainer.jsonの値を書き換えれば、vscodeの設定や拡張機能も共通化できるようになる
+  - 開発環境を統一できる
+- 開発環境がコンテナ内で完結するので、ローカル環境を汚さずに開発ができる
 
 ---
 
 # 事前準備について
 
-+ dockerコマンドを実行する環境を準備済みの前提です
+- dockerコマンドを実行する環境を準備済みの前提です
 
 ---
 
@@ -113,7 +113,7 @@ paginate: true
 
 1. ローカル環境へのGoのインストール [手順](https://go.dev/doc/install)
 2. ローカル環境へのタスクランナー(go-task)インストール [手順](https://taskfile.dev/installation/#go-modules)
-  + `go install github.com/go-task/task/v3/cmd/task@latest`
+  - `go install github.com/go-task/task/v3/cmd/task@latest`
 3. [リポジトリ](https://github.com/kurupeku/hello-golang)をclone
 4. cloneしたプロジェクトのルートディレクトリでローカル環境でテストを実行してみる
   - ローカルで実行する場合
@@ -134,4 +134,4 @@ paginate: true
 4. VSCodeの左下の `><` アイコンをクリックし `Reopen in Container` を選択
 5. コンテナ上でソースコードが閲覧・編集できることを確認
 6. VSCodeのターミナル上からテストを実行してみる
-  + `task test -- subject/chapter00`
+  - `task test -- subject/chapter00`
