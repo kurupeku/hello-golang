@@ -152,3 +152,15 @@ paginate: true
 `task test -- subject/chapter00`
 
 ※DevContainerにGoの実行環境が内包されているので、Goのインストールは不要
+
+---
+
+# 実演
+
+1. リモートリポジトリをclone
+2. 自分用のブランチを作成
+3. VSCode上でDevContainerを開く
+4. サンプル問題を実装する
+5. ローカル環境でテストがパスすることを確認
+6. リモートリポジトリにpush
+7. GitHub上でCIが通っていることを確認
