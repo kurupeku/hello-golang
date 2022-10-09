@@ -55,6 +55,6 @@ tasks:
 
   marp:
     cmds:
-      - docker run --rm -v $PWD/assets/marp:/home/marp/app/ -e LANG=$LANG marpteam/marp-cli slide-deck.md {{.CLI_ARGS}}
+      - docker run --rm -v $PWD/assets/marp:/home/marp/app/ -e MARP_USER="$(id -u):$(id -g)" -e LANG=$LANG marpteam/marp-cli {{.CLI_ARGS}}
       - mv $PWD/assets/marp/**.html docs/marp/
     silent: true
