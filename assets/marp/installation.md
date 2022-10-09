@@ -1,20 +1,57 @@
 ---
 marp: true
+size: 16:9
 paginate: true
+headingDivider: 1
+style: |
+  div.title {
+    text-align: center;
+    font-size: 60px;
+    color: #66CCFF;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  div.author {
+    text-align: right;
+    font-size: 40px;
+    color: #ffffff;
+    font-weight: bold;
+    position: absolute;
+    bottom: 20%;
+    right: 3%;
+  }
+
+  h1 {
+    font-size: 50px;
+    color: #66CCFF;
+  }
+
+  h2, li, p {
+    color: #ffffff;
+  }
+
 ---
 
-# Go勉強会ガイダンス
+<div class="title">
+  Go勉強会ガイダンス
+</div>
 
-インフラ開発部 SRE課（今本/上村)
+<div class="author">
+  インフラ開発部 SRE課（今本/上村)
+</div>
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # Go言語の特徴
 
 - Go言語はGoogleが開発したプログラミング言語
 - 文法がシンプル、高速、並行処理が得意などの特徴を持つ
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # なぜインフラ開発部でGo言語を学ぶのか
 
@@ -23,7 +60,7 @@ paginate: true
 - 特にKubernetesでは自作のカスタムコントローラーをGoで記述するため、Goに触れる機会が多い
 - そのため、インフラエンジニアもGo言語を習得する必要性が高い
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # 本勉強会が想定する参加者、勉強会のゴール
 
@@ -37,11 +74,11 @@ paginate: true
   - 週替わりで実装担当者を決めて、GoのCLIツールを1つ完成させることで実装力を高めます。
   - 完成させるツールの詳細については検討中のため、このガイダンス内での説明はありません。
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # 基礎編の進め方について
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # 基礎編の各回の進め方
 
@@ -52,7 +89,7 @@ paginate: true
     - サイト上での実行が可能
   - トピックごとに分からないところが無いかを確認し、都度質問してもらう
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # 基礎編の各回の進め方
 
@@ -62,7 +99,7 @@ paginate: true
     - 未実装になっているメソッドを実装する形をとる
   - 実装が終わったらGitHubにPushして、CIが通ればクリア
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # その他ルール
 
@@ -73,11 +110,11 @@ paginate: true
   - 演習問題を自力で解いてもらいたいため
 - 演習問題を解く時間も含めた時間配分となっているので、演習問題は事前に解かずに当日を迎えてください。
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # 環境構築
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # 開発スタイル
 
@@ -85,14 +122,14 @@ paginate: true
   - ローカルの実行環境にGoをインストールして開発する場合
   - VSCodeのDevContainers拡張機能を使ってDockerコンテナ上で開発する場合
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # DevContainersとは
 
 - Dockerコンテナを起動させて、コンテナ上にあるソースコードを直接編集するVSCodeの機能
 - Dockerコンテナ起動時にローカル環境のソースコードをマウントさせることで、ローカル環境のファイルとの同期も取られる
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # DevContainersの利点
 
@@ -102,13 +139,13 @@ paginate: true
   - 開発環境を統一できる
 - 開発環境がコンテナ内で完結するので、ローカル環境を汚さずに開発ができる
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # 事前準備について
 
 - dockerコマンドを実行する環境を準備済みの前提です
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # ローカルの実行環境にGoをインストールした開発する場合
 
@@ -123,7 +160,7 @@ paginate: true
 2. ローカル環境へのタスクランナー(go-task)インストール [手順](https://taskfile.dev/installation/#go-modules)
 `go install github.com/go-task/task/v3/cmd/task@latest`
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # ローカルの実行環境にGoをインストールした開発する場合
 
@@ -137,30 +174,32 @@ paginate: true
   `task docker-build` (初回のみ)
   `task docker-test -- subject/chapter00`
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # VSCodeのDevContainers拡張機能を使ってDockerコンテナ上で開発する場合
 
 ## 必要な作業
 
 1. [リポジトリ](https://github.com/kurupeku/hello-golang)をclone
-2. VSCodeをインストールし、cloneしたリポジトリを開く
-3. Remote Development拡張をVSCodeにインストール
-4. VSCodeの左下の `><` アイコンをクリックし `Reopen in Container` を選択
-5. コンテナ上でソースコードが閲覧・編集できることを確認
-6. VSCodeのターミナル上からテストを実行してみる
+1. VSCodeをインストールし、cloneしたリポジトリを開く
+1. Remote Development拡張をVSCodeにインストール
+1. VSCodeの左下の `><` アイコンをクリックし `Reopen in Container` を選択
+1. コンテナ上でソースコードが閲覧・編集できることを確認
+1. VSCodeのターミナル上からテストを実行してみる
 `task test -- subject/chapter00`
 
 ※DevContainerにGoの実行環境が内包されているので、Goのインストールは不要
 
----
+![bg brightness:0.3](./img/gopher.png)
 
 # 実演
 
 1. リモートリポジトリをclone
-2. 自分用のブランチを作成
-3. VSCode上でDevContainerを開く
-4. サンプル問題を実装する
-5. ローカル環境でテストがパスすることを確認
-6. リモートリポジトリにpush
-7. GitHub上でCIが通っていることを確認
+1. 自分用のブランチを作成
+1. VSCode上でDevContainerを開く
+1. サンプル問題を実装する
+1. ローカル環境でテストがパスすることを確認
+1. リモートリポジトリにpush
+1. GitHub上でCIが通っていることを確認
+
+![bg brightness:0.3](./img/gopher.png)
