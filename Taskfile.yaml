@@ -55,6 +55,7 @@ tasks:
 
   marp:
     cmds:
-      - docker run --rm -v $PWD/assets/marp:/home/marp/app/ -e MARP_USER="$(id -u):$(id -g)" -e LANG=$LANG marpteam/marp-cli {{.CLI_ARGS}}
-      - mv $PWD/assets/marp/**.html docs/marp/
+      - docker run --rm -v $PWD/assets/marp:/home/marp/app/ -e MARP_USER="$(id -u):$(id -g)" -e LANG=$LANG marpteam/marp-cli --html true {{.CLI_ARGS}}
+      - mv $PWD/assets/marp/$(echo {{.CLI_ARGS}} | awk -F . '{print $1".html"}') $PWD/docs/marp/
+      - cp -r $PWD/assets/marp/img $PWD/docs/marp/
     silent: true

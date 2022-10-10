@@ -14,7 +14,6 @@ style: |
     left: 50%;
     transform: translate(-50%, -50%);
   }
-
   div.author {
     text-align: right;
     font-size: 40px;
@@ -24,16 +23,19 @@ style: |
     bottom: 20%;
     right: 3%;
   }
-
-  h1 {
+  section h1 {
     font-size: 50px;
     color: #66CCFF;
   }
-
-  h2, li, p {
+  section h2 {
     color: #ffffff;
   }
-
+  section li {
+    color: #ffffff;
+  }
+  section p {
+    color: #ffffff;
+  }
 ---
 
 <div class="title">
