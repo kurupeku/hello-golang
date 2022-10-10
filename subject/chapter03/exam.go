@@ -11,11 +11,11 @@ func InnerChargeFromTokyo(station string) int {
 		return 0
 	}
 
-	next := "東京"
+	current := "東京"
 	for i := 0; i < 29; i++ {
-		next = helper.InnerNextStation(next)
-		dist += helper.InnerLoopDistance(next)
-		if next == station {
+		current = helper.InnerNextStation(current)
+		dist += helper.InnerLoopDistance(current)
+		if current == station {
 			break
 		}
 	}
@@ -46,11 +46,11 @@ func OuterChargeFromTokyo(station string) int {
 		return 0
 	}
 
-	next := "東京"
+	current := "東京"
 	for i := 0; i < 29; i++ {
-		next = helper.OuterNextStation(next)
-		dist += helper.OuterLoopDistance(next)
-		if next == station {
+		current = helper.OuterNextStation(current)
+		dist += helper.OuterLoopDistance(current)
+		if current == station {
 			break
 		}
 	}
