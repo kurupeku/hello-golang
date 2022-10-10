@@ -1,36 +1,7 @@
 package helper
 
 // 内回りの駅一覧
-var InnerStations = []string{
-	"神田",
-	"秋葉原",
-	"御徒町",
-	"上野",
-	"鶯谷",
-	"日暮里",
-	"西日暮里",
-	"田端",
-	"駒込",
-	"巣鴨",
-	"大塚",
-	"池袋",
-	"目白",
-	"高田馬場",
-	"新大久保",
-	"新宿",
-	"代々木",
-	"原宿",
-	"渋谷",
-	"恵比寿",
-	"目黒",
-	"五反田",
-	"大崎",
-	"品川",
-	"田町",
-	"浜松町",
-	"新橋",
-	"有楽町",
-	"東京",
+var innerStations = []string{
 	"神田",
 	"秋葉原",
 	"御徒町",
@@ -94,8 +65,39 @@ var innerDistance = map[string]int{
 	"東京":   800,
 }
 
+// 渡した駅の次の駅名を返す関数
+// 内回りバージョン
+//
+// @Params station string 駅名
+//
+// @Return string 次の駅名
+//
+//	渡した駅から見て次の駅名を返す
+func InnerNextStation(current string) string {
+	for i, s := range innerStations {
+		if s == current {
+			ni := i + 1
+			if ni == len(innerStations) {
+				return innerStations[0]
+			}
+
+			return innerStations[ni]
+		}
+	}
+
+	return current
+}
+
 // 一つ手前の駅から引数に渡した駅までの距離のメートルを int で返す関数
 // 内回りバージョン
+//
+// @Params station string 駅名
+//
+//	距離を取得したい駅名
+//
+// @Return int 距離 (m)
+//
+//	一つ手前から渡した駅までの距離
 func InnerLoopDistance(station string) int {
 	dist, ok := innerDistance[station]
 	if ok {
@@ -106,36 +108,7 @@ func InnerLoopDistance(station string) int {
 }
 
 // 外回りの駅一覧
-var OuterStations = []string{
-	"有楽町",
-	"新橋",
-	"浜松町",
-	"田町",
-	"品川",
-	"大崎",
-	"五反田",
-	"目黒",
-	"恵比寿",
-	"渋谷",
-	"原宿",
-	"代々木",
-	"新宿",
-	"新大久保",
-	"高田馬場",
-	"目白",
-	"池袋",
-	"大塚",
-	"巣鴨",
-	"駒込",
-	"田端",
-	"西日暮里",
-	"日暮里",
-	"鶯谷",
-	"上野",
-	"御徒町",
-	"秋葉原",
-	"神田",
-	"東京",
+var outerStations = []string{
 	"有楽町",
 	"新橋",
 	"浜松町",
@@ -199,8 +172,39 @@ var outerDistance = map[string]int{
 	"東京":   1300,
 }
 
+// 渡した駅の次の駅名を返す関数
+// 外回りバージョン
+//
+// @Params station string 駅名
+//
+// @Return string 次の駅名
+//
+//	渡した駅から見て次の駅名を返す
+func OuterNextStation(current string) string {
+	for i, s := range outerStations {
+		if s == current {
+			ni := i + 1
+			if ni == len(outerStations) {
+				return outerStations[0]
+			}
+
+			return outerStations[ni]
+		}
+	}
+
+	return current
+}
+
 // 一つ手前の駅から引数に渡した駅までの距離のメートルを int で返す関数
 // 外回りバージョン
+//
+// @Params station string 駅名
+//
+//	距離を取得したい駅名
+//
+// @Return int 距離 (m)
+//
+//	一つ手前から渡した駅までの距離
 func OuterLoopDistance(station string) int {
 	dist, ok := outerDistance[station]
 	if ok {
