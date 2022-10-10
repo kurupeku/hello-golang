@@ -88,6 +88,16 @@ func TestCasher_Receipt(t *testing.T) {
 	}{
 		{
 			name: "Purchase Ramen",
+			items: []Item{},
+			want: `
+ラーメン道 楽酢
+
+--------------------
+                   0
+`,
+		},
+		{
+			name: "Purchase Ramen",
 			items: []Item{
 				{"Ramen", 890},
 			},
