@@ -4,11 +4,16 @@ import (
 	"github.com/kurupeku/hello-golang/helper"
 )
 
+// If を使用して料金の条件分岐を行ってください
 func InnerChargeFromTokyo(station string) int {
 	var dist int
-	l := len(helper.InnerStations)
-	for i := 0; i < l; i++ {
-		next := helper.InnerStations[i]
+	if station == "東京" {
+		return 0
+	}
+
+	next := "東京"
+	for i := 0; i < 29; i++ {
+		next = helper.InnerNextStation(next)
 		dist += helper.InnerLoopDistance(next)
 		if next == station {
 			break
@@ -34,11 +39,16 @@ func InnerChargeFromTokyo(station string) int {
 	}
 }
 
+// Switch を使用して料金の条件分岐を行ってください
 func OuterChargeFromTokyo(station string) int {
 	var dist int
-	l := len(helper.OuterStations)
-	for i := 0; i < l; i++ {
-		next := helper.OuterStations[i]
+	if station == "東京" {
+		return 0
+	}
+
+	next := "東京"
+	for i := 0; i < 29; i++ {
+		next = helper.OuterNextStation(next)
 		dist += helper.OuterLoopDistance(next)
 		if next == station {
 			break

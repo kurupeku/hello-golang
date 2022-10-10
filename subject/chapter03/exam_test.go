@@ -16,6 +16,11 @@ func TestInnerChargeFromTokyo(t *testing.T) {
 		want int
 	}{
 		{
+			name: "To 東京",
+			args: args{"東京"},
+			want: 0,
+		},
+		{
 			name: "To 神田",
 			args: args{"神田"},
 			want: 140,
@@ -72,6 +77,11 @@ func TestOuterChargeFromTokyo(t *testing.T) {
 		args args
 		want int
 	}{
+		{
+			name: "To 東京",
+			args: args{"東京"},
+			want: 0,
+		},
 		{
 			name: "To 有楽町",
 			args: args{"有楽町"},
