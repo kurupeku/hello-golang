@@ -12,11 +12,11 @@
 
 ### 読み上げ関数
 
-`func Nabeatsu(n int) []string` にて本課題をクリアしてください。
+`func Nabeatsu(n int) []string` を実装して本課題をクリアしてください。
 
 ### 数字の文字列化
 
-各数字の文字列化に関しては、定義済みの `type AhoNumber uint` と、そこに定義済みのメソッド `func (AhoNumber) Call()` を利用してください。
+各数字の文字列化に関しては、定義済みの `type AhoNumber uint` の定義済みのメソッド `func (AhoNumber) Call()` を実装して実現してください。
 
 e.g.)
 
