@@ -169,6 +169,7 @@ style: |
 ## 必要な作業
 
 3. [リポジトリ](https://github.com/kurupeku/hello-golang)をclone
+最終ページに注意事項あり
 4. cloneしたプロジェクトのルートディレクトリでローカル環境でテストを実行してみる
   a. ローカルで実行する場合
   `task test -- subject/chapter00`
@@ -183,6 +184,7 @@ style: |
 ## 必要な作業
 
 1. [リポジトリ](https://github.com/kurupeku/hello-golang)をclone
+最終ページに注意事項あり
 1. VSCodeをインストールし、cloneしたリポジトリを開く
 1. Remote Development拡張をVSCodeにインストール
 1. VSCodeの左下の `><` アイコンをクリックし `Reopen in Container` を選択
@@ -197,11 +199,26 @@ style: |
 # 実演
 
 1. リモートリポジトリをclone
+次ページに注意事項あり
 1. 自分用のブランチを作成
 1. VSCode上でDevContainerを開く
 1. サンプル問題を実装する
 1. ローカル環境でテストがパスすることを確認
 1. リモートリポジトリにpush
 1. GitHub上でCIが通っていることを確認
+
+![bg brightness:0.3](./img/gopher.png)
+
+# リモートリポジトリのcloneに関する注意点
+
+他のGitアカウントをPC上で使っている場合、Gitユーザーのglobal設定が既に存在しているので、
+以下の手順でcloneして勉強会用リポジトリの設定を追加してください。
+
+1. Personal Access Tokenを`Settings`>`Developer Settings`>`Personal access tokens`>`Generate new token`で生成
+1. `git clone https://[アカウント名]:[Personal Access Token]@github.com/kurupeku/hello-golang`でclone
+1. `cd hello-golang`
+1. `git config --local user.name [アカウント名]`
+1. `git config --local user.email [メールアドレス]`
+`Settings`>`Emails`で`Keep my email addresses private`を有効化し、記載されたメアドを入力
 
 ![bg brightness:0.3](./img/gopher.png)
