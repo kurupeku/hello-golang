@@ -211,7 +211,7 @@ style: |
 
 # リモートリポジトリのcloneに関する注意点
 
-他のGitアカウントをPC上で使っている場合、Gitユーザーのglobal設定が既に存在しているので、
+グローバルのGitユーザーがこのリポジトリのユーザーと異なる場合、プッシュできなくなっていたりコミットログが荒れたりしてしまいます。
 以下の手順でcloneして勉強会用リポジトリの設定を追加してください。
 
 1. Personal Access Tokenを`Settings`>`Developer Settings`>`Personal access tokens`>`Generate new token`で生成
