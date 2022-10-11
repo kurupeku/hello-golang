@@ -1,13 +1,16 @@
-name: Testing Go
+name: Testing Chapter 06
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - "**.go"
+      - "subject/chapter06/**.go"
+
+env:
+  TARGET: chapter06
 
 jobs:
-  build:
+  testing:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,4 +21,4 @@ jobs:
           go-version-file: go.mod
 
       - name: Go Test
-        run: go test -v ./...
+        run: go test -v ./subject/${TARGET}
