@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello Golang</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/css/uikit.min.css"
+    />
+  </head>
+  <body>
+    <nav
+      class="uk-navbar-container uk-margin uk-padding uk-padding-remove-vertical"
+      uk-navbar
+    >
+      <a class="uk-navbar-item uk-logo" href="#">Hello Golang</a>
+
+      <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+          <li><a href="./golang.html">Setup Golang</a></li>
+          <li class="uk-active"><a href="./go-task.html">Setup GoTask</a></li>
+          <li><a href="./wsl.html">Setup Docker for WSL2</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article class="uk-container">
+      <h1>Go Task</h1>
+
+      <h2>Installing</h2>
+
+      <p>テストの実行用に以下のタスクランナーを使用する想定です。</p>
+      <ul>
+        <li><a href="https://taskfile.dev/">Task</a></li>
+      </ul>
+      <p>
+        利用しなくともテストの実行は可能ですが、すぐにインストールできるためよろしければ導入ください。
+      </p>
+
+      <h3>Via Go Module</h3>
+
+      <p>Go をローカルにインストール済みの方は以下のコマンドで導入可能です。</p>
+      <pre><code class="language-bash"><div>go install github.com/go-task/task/v3/cmd/task@latest
+</div></code></pre>
+
+      <h3>For Mac</h3>
+
+      <pre><code class="language-bash"><div>brew install go-task/tap/go-task
+</div></code></pre>
+
+      <h3>For Linux</h3>
+
+      <pre><code class="language-bash"><div>sh -c <span class="hljs-string">&quot;<span class="hljs-subst">$(curl --location https://taskfile.dev/install.sh)</span>&quot;</span> -- -d -b ~/.<span class="hljs-built_in">local</span>/bin
+</div></code></pre>
+
+      <h3>For Windows</h3>
+
+      <pre><code class="language-bash"><div>choco install go-task
+</div></code></pre>
+
+      <h2>Usage</h2>
+
+      <h3>ローカルから Docker コンテナ内の Shell を操作する</h3>
+
+      <p>タスクランナーに以下のコマンドを定義しています。</p>
+
+      <pre><code class="language-bash">
+task docker-bash # bashで接続
+
+task docker-zsh # zsh で接続
+</code></pre>
+      <p>
+        お好きな方の Shell を選んでタスクを実行すると、 Container
+        が立ち上がって内部の Shell に接続された状態になります。
+      </p>
+      <p>
+        <code>--rm</code> フラグをつけているのでコンテナは都度破棄されます。
+      </p>
+
+      <h3>テストの実行</h3>
+
+      <p>
+        Golang
+        は標準でテスト実行用のコマンドが用意されており、以下のコマンドで実行することができます。
+      </p>
+      <pre><code class="language-bash">
+# すべてのテストを実行する場合
+go test ./...
+
+# 特定のパッケージのテストを実行する場合
+go test ./&lt;package-name&gt;
+</code></pre>
+      <p>また、タスクランナーにテスト実行用のタスクを定義済みです。</p>
+      <p>以下から適したタスクを走らせてテストを実行してください。</p>
+      <h3
+        id="ローカルの-go-バイナリを使用して-or-container-内でテストを実行する場合"
+      >
+        ローカルの Go バイナリを使用して or Container 内でテストを実行する場合
+      </h3>
+      <pre><code class="language-bash">
+task test
+</code></pre>
+      <p>
+        特定のパッケージのみテストしたい場合は以下のように
+        <code>--</code> の後にパッケージ名を渡して実行してください。
+      </p>
+      <pre><code class="language-bash">task test -- &lt;package-name&gt;
+</code></pre>
+      <h3 id="ローカルから-docker-を利用してテストを実行する場合">
+        ローカルから Docker を利用してテストを実行する場合
+      </h3>
+      <p>初めて利用する場合はまず DockerImage をビルドします。</p>
+      <pre><code class="language-bash"><div>task docker-build
+</div></code></pre>
+      <p>
+        DockerImage がビルド済みの状態で以下のコマンドを実行すると
+        DockerContainer が立ち上がり、 Container
+        内でテストコマンドを実行することができます
+      </p>
+      <pre><code class="language-bash">task docker-test
+
+# ローカルと同じようにパッケージ指定も可能です
+task docker-test -- &lt;package-name&gt;
+</code></pre>
+      <p>上記 2 つを同時に実行することもできます。</p>
+      <pre><code class="language-bash">task docker-build-test</code></pre>
+    </article>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit-icons.min.js"></script>
+  </body>
+</html>

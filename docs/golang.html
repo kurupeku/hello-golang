@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello Golang</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/css/uikit.min.css"
+    />
+  </head>
+  <body>
+    <nav
+      class="uk-navbar-container uk-margin uk-padding uk-padding-remove-vertical"
+      uk-navbar
+    >
+      <a class="uk-navbar-item uk-logo" href="#">Hello Golang</a>
+
+      <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+          <li class="uk-active"><a href="./golang.html">Setup Golang</a></li>
+          <li><a href="./go-task.html">Setup GoTask</a></li>
+          <li><a href="./wsl.html">Setup Docker for WSL2</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article class="uk-container">
+      <h1>Go のローカルインストール</h1>
+
+      <h2 id="mac">Mac</h2>
+
+      <h3>インストーラー経由でインストール（推奨）</h3>
+
+      <p>
+        <a href="https://go.dev/doc/install">こちら</a> からダウンロードして実行
+      </p>
+
+      <h3>Homebrew を使用してインストール（バージョンが古い場合あり）</h3>
+
+      <ol>
+        <li><code>brew install go</code></li>
+        <li><code>go version</code> でバージョンが表示されれば OK</li>
+      </ol>
+
+      <h2 id="windows">Windows</h2>
+
+      <p>
+        <a href="https://go.dev/doc/install">こちら</a>
+        からインストーラーをダウンロードして実行
+      </p>
+
+      <h2 id="linux">Linux</h2>
+      <ol>
+        <li>
+          <code
+            >rm -rf /usr/local/go &amp;&amp; tar -C /usr/local -xzf
+            go1.19.2.linux-amd64.tar.gz</code
+          >
+        </li>
+        <li>
+          <code>vi ~/.bashrc</code> で
+          <code>export PATH=$PATH:/usr/local/go/bin</code> を追記
+        </li>
+        <li><code>source ~/.bashrc</code></li>
+        <li><code>go version</code> でバージョンが表示されれば OK</li>
+      </ol>
+    </article>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit-icons.min.js"></script>
+  </body>
+</html>
