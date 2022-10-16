@@ -44,3 +44,19 @@ aho.Call() // => "さぁん"
 数字のままでは特定の数字が含まれるかどうかを判定する手段がないので、文字列に変換後、文字列検索を行って判定することで実現可能です。
 
 文字列の検索や操作用のパッケージである `strings` パッケージをインポートして活用してみましょう。
+
+## テスト実行コマンド
+
+### ローカル or DevContainer 内で実行する場合
+
+`task test -- subject/chapter06`
+
+### ローカルから Docker を起動して実行する場合
+
+`task docker-build` (初回のみ)
+
+`task docker-test -- subject/chapter06`
+
+## CI結果確認
+
+GitHubにpush後、[こちらのページ](https://github.com/kurupeku/hello-golang/actions/workflows/chapter06_test.yml)で自分のブランチの結果を確認

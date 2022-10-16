@@ -59,3 +59,19 @@
 ## Tips
 
 各グレードを表す構造体にフィールドは不要です。
+
+## テスト実行コマンド
+
+### ローカル or DevContainer 内で実行する場合
+
+`task test -- subject/chapter08`
+
+### ローカルから Docker を起動して実行する場合
+
+`task docker-build` (初回のみ)
+
+`task docker-test -- subject/chapter08`
+
+## CI結果確認
+
+GitHubにpush後、[こちらのページ](https://github.com/kurupeku/hello-golang/actions/workflows/chapter08_test.yml)で自分のブランチの結果を確認
