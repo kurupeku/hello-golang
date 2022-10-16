@@ -93,3 +93,16 @@ for i := 0; i < 100; i++ {
 ```
 
 これを使うとスマートに目的の駅までの距離を計算できます。
+
+## テスト実行コマンド
+
+1. ローカルで実行する場合
+`task test -- subject/chapter03`
+1. Docker上で実行する場合
+`task docker-build` (初回のみ)
+`task docker-test -- subject/chapter03`
+
+## CI結果確認
+
+GitHubにpush後、以下のページで自分のブランチの結果を確認
+[Testing Chapter 03](https://github.com/kurupeku/hello-golang/actions/workflows/chapter03_test.yml)
