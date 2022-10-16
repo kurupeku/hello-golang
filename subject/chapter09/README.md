@@ -93,3 +93,19 @@
 - `func (f *Fare) CardCharge() int` : IC カードの料金を算出するメソッド
 
 それぞれを改札関数の中で使い分けるような実装にする必要があります。
+
+## テスト実行コマンド
+
+1. ローカル or DevContainer 内で実行する場合
+
+   `task test -- subject/chapter09`
+
+1. ローカルから Docker を起動して実行する場合
+
+   `task docker-build` (初回のみ)
+   `task docker-test -- subject/chapter09`
+
+## CI 結果確認
+
+GitHub に push 後、以下のページで自分のブランチの結果を確認
+[Testing Chapter 09](https://github.com/kurupeku/hello-golang/actions/workflows/chapter09_test.yml)
