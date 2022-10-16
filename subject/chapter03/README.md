@@ -98,7 +98,7 @@ for i := 0; i < 100; i++ {
 
 1. ローカルで実行する場合
 `task test -- subject/chapter03`
-1. Docker上で実行する場合
+1. ローカルから Docker を起動して実行する場合
 `task docker-build` (初回のみ)
 `task docker-test -- subject/chapter03`
 
