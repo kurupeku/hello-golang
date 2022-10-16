@@ -107,5 +107,4 @@
 
 ## CI 結果確認
 
-GitHub に push 後、以下のページで自分のブランチの結果を確認
-[Testing Chapter 09](https://github.com/kurupeku/hello-golang/actions/workflows/chapter09_test.yml)
+GitHub に push 後、[こちらのページ](https://github.com/kurupeku/hello-golang/actions/workflows/chapter09_test.yml)で自分のブランチの結果を確認
