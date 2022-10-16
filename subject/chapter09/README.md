@@ -32,7 +32,7 @@
 - `Amount() int`
 - `Use(charge int)`
 
-内部でこの interface の実態の型を判定し、 `Ticket` と `Card` で処理を分ける必要があります。
+内部でこの interface の実体の型を判定し、 `Ticket` と `Card` で処理を分ける必要があります。
 
 #### 戻り値
 
