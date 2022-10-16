@@ -38,7 +38,7 @@
 
 ## テスト実行コマンド
 
-1. ローカルで実行する場合
+1. ローカル or DevContainer 内で実行する場合
 `task test -- subject/chapter02`
 1. Docker上で実行する場合
 `task docker-build` (初回のみ)
