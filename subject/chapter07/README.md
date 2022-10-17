@@ -87,3 +87,19 @@ Ramen     :      890
 埋め込みコードも種類が豊富にあり、埋め込み位置にもどんな表記で埋め込むのかを柔軟に操作できます。
 
 詳細は [こちらの記事](https://zenn.dev/mkosakana/articles/97466310534b4c) が詳しいです。
+
+## テスト実行コマンド
+
+### ローカル or DevContainer 内で実行する場合
+
+`task test -- subject/chapter07`
+
+### ローカルから Docker を起動して実行する場合
+
+`task docker-build` (初回のみ)
+
+`task docker-test -- subject/chapter07`
+
+## CI結果確認
+
+GitHubにpush後、[こちらのページ](https://github.com/kurupeku/hello-golang/actions/workflows/chapter07_test.yml)で自分のブランチの結果を確認
