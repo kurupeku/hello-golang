@@ -70,6 +70,18 @@ func TestTaxi(t *testing.T) {
 			want:  36800,
 			want1: 44160,
 		},
+		{
+			name:  "Distance is 500m",
+			args:  args{"500m"},
+			want:  500,
+			want1: 600,
+		},
+		{
+			name:  "Distance is illegal value a10a",
+			args:  args{"a10a"},
+			want:  0,
+			want1: 0,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
