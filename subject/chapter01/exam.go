@@ -1,3 +1,6 @@
+// Yasuhiro Fujii
+// 2022/10/17 001
+
 package chapter01
 
 import (
@@ -23,7 +26,7 @@ func Taxi(distance string) (int, int) {
 	var normal1 int
 	var night1 float32
 	tmp1 = helper.ParseDistance(distance)
-	// 入力データ=0 対策用、0除算エラーを防ぐ。マイナスだとtaskがこけるけど。
+	// distance = 0 対策用、0除算エラーを防ぐ。ただし、マイナスだとtaskがこけるけど。
 	if tmp1 <= firstRideDistance {
 		normal1 = firstPrice
 	} else {
