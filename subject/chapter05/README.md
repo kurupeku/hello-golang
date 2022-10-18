@@ -51,3 +51,19 @@ e.g.)
 数値を丸めたり、切り上げたりして整数を作るための関数は `math` という標準パッケージ内に用意されています。
 
 その他にも最大値の取得やランダム数値の生成など、計算に便利な関数が多数用意されているので興味があれば調べてみてください。
+
+## テスト実行コマンド
+
+### ローカル or DevContainer 内で実行する場合
+
+`task test -- subject/chapter05`
+
+### ローカルから Docker を起動して実行する場合
+
+`task docker-build` (初回のみ)
+
+`task docker-test -- subject/chapter05`
+
+## CI結果確認
+
+GitHubにpush後、[こちらのページ](https://github.com/kurupeku/hello-golang/actions/workflows/chapter05_test.yml)で自分のブランチの結果を確認
