@@ -1,5 +1,7 @@
 package chapter01
 
+import "github.com/kurupeku/hello-golang/helper"
+
 // 初乗り料金
 const firstPrice = 500
 
@@ -15,5 +17,13 @@ const perDistance = 250
 // 引数に距離を表す文字列、戻り値が通常料金と深夜料金になるように実装してください
 func Taxi(distance string) (int, int) {
 	// TODO: 実装
-	return 0, 0
+	all_distance := helper.ParseDistance(distance)
+	normal_rate_price := (((all_distance - firstRideDistance) / perDistance) * perPrice) + firstPrice
+	late_night_rate_price := (normal_rate_price * 12) / 10
+	// billing_distance := all_distance - firstRideDistance
+	// billing_unit := billing_distance / perDistance
+	// billing_price := billing_unit * perPrice
+	// normal_rate_price := billing_price + firstPrice
+	// late_night_rate_price := (normal_rate_price * 12) / 10
+	return normal_rate_price, late_night_rate_price
 }
