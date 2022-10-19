@@ -27,11 +27,17 @@ func Taxi(distance string) (int, int) {
 	var night1 float32
 	tmp1 = helper.ParseDistance(distance)
 	// 0除算エラーを防ぐため。
-	if tmp1 <= firstRideDistance {
-		normal1 = firstPrice
-	} else {
-		normal1 = (((tmp1 - firstRideDistance) / perDistance) * perPrice) + firstPrice
-	}
+	// 2022/10/19
+	// 初乗り未満の数値は渡されない前提で大丈夫です。という条件があったので書き直し。
+	/*
+		if tmp1 <= firstRideDistance {
+			normal1 = firstPrice
+		} else {
+			normal1 = (((tmp1 - firstRideDistance) / perDistance) * perPrice) + firstPrice
+		}
+	*/
+	normal1 = (((tmp1 - firstRideDistance) / perDistance) * perPrice) + firstPrice
+	// めんどくさいのでキャストする
 	night1 = float32(normal1) * 1.2
 
 	return normal1, int(night1)
