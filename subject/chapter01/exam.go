@@ -20,5 +20,5 @@ func Taxi(distance string) (int, int) {
 	totalDistMeter := helper.ParseDistance(distance)
 	addPriceTimes := (totalDistMeter - firstRideDistance) / perDistance
 	totalNormalPrice := firstPrice + (perPrice * addPriceTimes)
-	return totalNormalPrice, int(float64(totalNormalPrice) * 1.2)
+	return totalNormalPrice, totalNormalPrice + (totalNormalPrice / 5)
 }
