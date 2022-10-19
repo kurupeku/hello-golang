@@ -21,6 +21,16 @@
 
       <div class="uk-navbar-right">
         <ul class="uk-navbar-nav">
+          <li>
+            <a href="https://kurupeku.github.io/hello-golang/wsl.html"
+              >Setup Docker on WSL2</a
+            >
+          </li>
+          <li>
+            <a href="https://kurupeku.github.io/hello-golang/multipass.html"
+              >Setup Docker for on Multipass</a
+            >
+          </li>
           <li class="uk-active">
             <a href="https://kurupeku.github.io/hello-golang/golang.html"
               >Setup Golang</a
@@ -31,57 +41,57 @@
               >Setup GoTask</a
             >
           </li>
-          <li>
-            <a href="https://kurupeku.github.io/hello-golang/wsl.html"
-              >Setup Docker for WSL2</a
-            >
-          </li>
         </ul>
       </div>
     </nav>
 
-    <article class="uk-container uk-margin-large">
-      <h1>Go のローカルインストール</h1>
+    <div class="uk-container uk-margin-large">
+      <article class="uk-article">
+        <h1 class="uk-article-title">Go のローカルインストール</h1>
 
-      <h2 id="mac">Mac</h2>
+        <h2 id="mac">Mac</h2>
 
-      <h3>インストーラー経由でインストール（推奨）</h3>
+        <h3>インストーラー経由でインストール（推奨）</h3>
 
-      <p>
-        <a href="https://go.dev/doc/install">こちら</a> からダウンロードして実行
-      </p>
+        <p>
+          <a href="https://go.dev/doc/install">こちら</a>
+          からダウンロードして実行
+        </p>
 
-      <h3>Homebrew を使用してインストール（バージョンが古い場合あり）</h3>
+        <h3>Homebrew を使用してインストール（バージョンが古い場合あり）</h3>
 
-      <ol>
-        <li><code>brew install go</code></li>
-        <li><code>go version</code> でバージョンが表示されれば OK</li>
-      </ol>
+        <ol>
+          <li><code>brew install go</code></li>
+          <li><code>go version</code> でバージョンが表示されれば OK</li>
+        </ol>
 
-      <h2 id="windows">Windows</h2>
+        <h2 id="windows">Windows</h2>
 
-      <p>
-        <a href="https://go.dev/doc/install">こちら</a>
-        からインストーラーをダウンロードして実行
-      </p>
+        <p>
+          <a href="https://go.dev/doc/install">こちら</a>
+          からインストーラーをダウンロードして実行
+        </p>
 
-      <h2 id="linux">Linux</h2>
-      <ol>
-        <li><code>wget https://go.dev/dl/go1.19.2.linux-amd64.tar.gz</code></li>
-        <li>
-          <code
-            >rm -rf /usr/local/go &amp;&amp; tar -C /usr/local -xzf
-            go1.19.2.linux-amd64.tar.gz</code
-          >
-        </li>
-        <li>
-          <code>vi ~/.bashrc</code> で
-          <code>export PATH=$PATH:/usr/local/go/bin</code> を追記
-        </li>
-        <li><code>source ~/.bashrc</code></li>
-        <li><code>go version</code> でバージョンが表示されれば OK</li>
-      </ol>
-    </article>
+        <h2 id="linux">Linux</h2>
+        <ol>
+          <li>
+            <code>wget https://go.dev/dl/go1.19.2.linux-amd64.tar.gz</code>
+          </li>
+          <li>
+            <code
+              >rm -rf /usr/local/go &amp;&amp; tar -C /usr/local -xzf
+              go1.19.2.linux-amd64.tar.gz</code
+            >
+          </li>
+          <li>
+            <code>vi ~/.bashrc</code> で
+            <code>export PATH=$PATH:/usr/local/go/bin</code> を追記
+          </li>
+          <li><code>source ~/.bashrc</code></li>
+          <li><code>go version</code> でバージョンが表示されれば OK</li>
+        </ol>
+      </article>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit-icons.min.js"></script>
   </body>
