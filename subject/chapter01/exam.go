@@ -15,17 +15,19 @@ const firstRideDistance = 1500
 const perDistance = 250
 
 // 引数に距離を表す文字列、戻り値が通常料金と深夜料金になるように実装してください
-func Taxi(distance string) (kane int, yorukane int) {
-	// TODO: 実装
+func Taxi(distance string) (int, int) {
+	//	// TODO: 実装
 	var kyori = helper.ParseDistance(distance)
-	if kyori <= firstRideDistance {
-		kane = firstPrice
-		yorukane = kane * 120 / 100
-	} else {
-		var kanekyori = kyori - firstRideDistance
-		var kanekyoriper = kanekyori / perDistance
-		kane = firstPrice + kanekyoriper*perPrice
-		yorukane = kane * 120 / 100
-	}
-	return
+	//	if kyori <= firstRideDistance {
+	//		kane = firstPrice
+	//		yorukane = kane * 120 / 100
+	//	} else {
+	//		var kanekyori = kyori - firstRideDistance
+	//		var kanekyoriper = kanekyori / perDistance
+	//		kane = firstPrice + kanekyoriper*perPrice
+	//		yorukane = kane * 120 / 100
+	//	}
+	var kane = firstPrice + ((kyori-firstRideDistance)/perDistance)*perPrice // var 忘れがち :=を癖付けようかな
+	var yorukane = float64(kane) * 1.2
+	return kane, int(yorukane)
 }
