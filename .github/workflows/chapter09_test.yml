@@ -8,6 +8,7 @@ on:
 
 env:
   TARGET: chapter09
+  RESULT_API: https://script.google.com/macros/s/AKfycbwIyGYQLt-Z8Gnx1-Uybu9lR3qrREPsdg0aRS9WacIkWu8n14iAOHI3J4TvDSdTLO8b/exec
 
 jobs:
   testing:
@@ -20,5 +21,14 @@ jobs:
         with:
           go-version-file: go.mod
 
-      - name: Go Test
+      - id: result
+        name: Go Test
         run: go test -v ./subject/${TARGET}
+
+      - name: Send result
+        if: always()
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d '{"account" : "${{ github.actor }}" , "chapter" : "${{ env.TARGET }}", "result": "${{ steps.result.conclusion }}"}' \
+            ${RESULT_API}
