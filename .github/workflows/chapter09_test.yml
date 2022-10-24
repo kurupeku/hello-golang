@@ -1,13 +1,13 @@
-name: Testing Chapter 01
+name: Testing Chapter 09
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - "subject/chapter01/**.go"
+      - "subject/chapter09/**.go"
 
 env:
-  TARGET: chapter01
+  TARGET: chapter09
 
 jobs:
   testing:

@@ -35,3 +35,19 @@
 ### `float` 系の型から `int` 型への変換について
 
 `float64` などから `int` 系への変換を行うと小数点以下の数値は切り捨てられます。
+
+## テスト実行コマンド
+
+### ローカル or DevContainer 内で実行する場合
+
+`task test -- subject/chapter02`
+
+### ローカルから Docker を起動して実行する場合
+
+`task docker-build` (初回のみ)
+
+`task docker-test -- subject/chapter02`
+
+## CI結果確認
+
+GitHubにpush後、[こちらのページ](https://github.com/kurupeku/hello-golang/actions/workflows/chapter02_test.yml)で自分のブランチの結果を確認
