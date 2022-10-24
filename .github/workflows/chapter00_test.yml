@@ -1,13 +1,13 @@
-name: Testing Chapter 09
+name: Testing Chapter 00
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - "subject/chapter09/**.go"
+      - "subject/chapter00/**.go"
 
 env:
-  TARGET: chapter09
+  TARGET: chapter00
   RESULT_API: https://script.google.com/macros/s/AKfycbwIyGYQLt-Z8Gnx1-Uybu9lR3qrREPsdg0aRS9WacIkWu8n14iAOHI3J4TvDSdTLO8b/exec
 
 jobs:
