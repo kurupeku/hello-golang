@@ -12,16 +12,15 @@ const (
 
 func MinimumCoins(price uint) (count500, count100, count050, count010, count005, count001 uint) {
 	amount := price + uint((float64(price) * TaxRate))
-	count500 = amount / Coin500
-	amount %= Coin500
-	count100 = amount / Coin100
-	amount %= Coin100
-	count050 = amount / Coin050
-	amount %= Coin050
-	count010 = amount / Coin010
-	amount %= Coin010
-	count005 = amount / Coin005
-	amount %= Coin005
-	count001 = amount
+	fn := func(count *uint, coin uint) {
+		*count = amount / coin
+		amount %= coin
+	}
+	fn(&count500, Coin500)
+	fn(&count100, Coin100)
+	fn(&count050, Coin050)
+	fn(&count010, Coin010)
+	fn(&count005, Coin005)
+	fn(&count001, Coin001)
 	return
 }
