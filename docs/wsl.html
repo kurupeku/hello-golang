@@ -21,6 +21,16 @@
 
       <div class="uk-navbar-right">
         <ul class="uk-navbar-nav">
+          <li class="uk-active">
+            <a href="https://kurupeku.github.io/hello-golang/wsl.html"
+              >Setup Docker on WSL2</a
+            >
+          </li>
+          <li>
+            <a href="https://kurupeku.github.io/hello-golang/multipass.html"
+              >Setup Docker for on Multipass</a
+            >
+          </li>
           <li>
             <a href="https://kurupeku.github.io/hello-golang/golang.html"
               >Setup Golang</a
@@ -31,167 +41,164 @@
               >Setup GoTask</a
             >
           </li>
-          <li class="uk-active">
-            <a href="https://kurupeku.github.io/hello-golang/wsl.html"
-              >Setup Docker for WSL2</a
-            >
-          </li>
         </ul>
       </div>
     </nav>
 
-    <article class="uk-container uk-margin-large">
-    <span
-      id="markdown-mermaid"
-      aria-hidden="true"
-      data-dark-mode-theme="dark"
-      data-light-mode-theme="default"
-    ></span>
-    <h1 id="docker-on-wsl2">Docker on WSL2</h1>
-    <p>
-      WSL2 有効化後、VSCode の
-      <code>Remote Development</code> 拡張機能を使用し、Container
-      上での開発を行える状態になるまでをスコープとしています。
-    </p>
-    <p>
-      使用する WSL2 のディストリビューションは
-      <code>Ubuntu 20.04LTS</code> です。
-    </p>
-    <h2 id="前提">前提</h2>
-    <p>
-      WSL2
-      を有効化後、ユーザー名とパスワードを設定し終えた段階を前提としています。
-    </p>
-    <p>
-      既に色々触っていて、クリーンな状態で入れ直したい場合は以下の手順を実行してください。
-    </p>
-    <h3 id="既に利用していて-wsl-内をリセットしても良い場合">
-      既に利用していて WSL 内をリセットしても良い場合
-    </h3>
-    <ol>
-      <li>[スタート] → [設定] → [アプリ] にて、[アプリと機能] をクリック</li>
-      <li>[Ubuntu アプリ] の [詳細オプション] をクリック</li>
-      <li>[リセット] で初期化</li>
-    </ol>
-    <h3 id="既に利用していて-docker-だけ入れ直したい場合">
-      既に利用していて Docker だけ入れ直したい場合
-    </h3>
-    <p>古いパッケージを削除します。</p>
-    <pre><code class="language-bash">sudo apt-get remove docker docker-engine docker.io containerd runc
+    <div class="uk-container uk-margin-large">
+      <article class="uk-article">
+        <h1 class="uk-article-title" id="docker-on-wsl2">Docker on WSL2</h1>
+        <p>
+          WSL2 有効化後、VSCode の
+          <code>Remote Development</code> 拡張機能を使用し、Container
+          上での開発を行える状態になるまでをスコープとしています。
+        </p>
+        <p>
+          使用する WSL2 のディストリビューションは
+          <code>Ubuntu 20.04LTS</code> です。
+        </p>
+        <h2 id="前提">前提</h2>
+        <p>
+          WSL2
+          を有効化後、ユーザー名とパスワードを設定し終えた段階を前提としています。
+        </p>
+        <p>
+          既に色々触っていて、クリーンな状態で入れ直したい場合は以下の手順を実行してください。
+        </p>
+        <h3 id="既に利用していて-wsl-内をリセットしても良い場合">
+          既に利用していて WSL 内をリセットしても良い場合
+        </h3>
+        <ol>
+          <li>
+            [スタート] → [設定] → [アプリ] にて、[アプリと機能] をクリック
+          </li>
+          <li>[Ubuntu アプリ] の [詳細オプション] をクリック</li>
+          <li>[リセット] で初期化</li>
+        </ol>
+        <h3 id="既に利用していて-docker-だけ入れ直したい場合">
+          既に利用していて Docker だけ入れ直したい場合
+        </h3>
+        <p>古いパッケージを削除します。</p>
+        <pre><code class="language-bash">sudo apt-get remove docker docker-engine docker.io containerd runc
 </code></pre>
-    <h2 id="docker-のインストール手順">Docker のインストール手順</h2>
-    <p>依存パッケージをインストールします。</p>
-    <pre><code class="language-bash">sudo apt-get update
+        <h2 id="docker-のインストール手順">Docker のインストール手順</h2>
+        <p>依存パッケージをインストールします。</p>
+        <pre><code class="language-bash">sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg lsb-release
 </code></pre>
-    <p>Docker 公式の gpg 鍵を追加します。</p>
-    <pre><code class="language-bash">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+        <p>Docker 公式の gpg 鍵を追加します。</p>
+        <pre><code class="language-bash">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 </code></pre>
-    <p>Docker 安定版のリポジトリを <code>apt</code> に追加します。</p>
-    <pre><code class="language-bash">echo \
+        <p>Docker 安定版のリポジトリを <code>apt</code> に追加します。</p>
+        <pre><code class="language-bash">echo \
   &quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable&quot; | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
 </code></pre>
-    <p>Docker 関連のパッケージをインストールします。</p>
-    <pre><code class="language-bash">sudo apt-get update
+        <p>Docker 関連のパッケージをインストールします。</p>
+        <pre><code class="language-bash">sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 </code></pre>
-    <p>Docker デーモンを起動して動作確認をします。</p>
-    <pre><code class="language-bash">sudo service docker start
+        <p>Docker デーモンを起動して動作確認をします。</p>
+        <pre><code class="language-bash">sudo service docker start
 sudo docker run hello-world
 </code></pre>
-    <h2 id="docker-コマンドを-sudo-なしで実行">
-      <code>docker</code> コマンドを <code>sudo</code> なしで実行
-    </h2>
-    <p>
-      上の手順でインストールしただけの状態だと、
-      <code>docker</code> コマンドの実行に
-      <code>sudo</code> が必要になっています。
-    </p>
-    <p>
-      以下の手順でユーザーを <code>docker</code> グループに所属させることで
-      <code>sudo</code> なしで実行が可能になります。
-    </p>
-    <blockquote>
-      <p class="uk-text-small">
-        <code>docker</code> グループは Docker
-        のインストール時に自動で作成されています。
-      </p>
-    </blockquote>
-    <pre><code class="language-bash">sudo usermod -aG docker $USER
+        <h2 id="docker-コマンドを-sudo-なしで実行">
+          docker コマンドを sudo なしで実行
+        </h2>
+        <p>
+          上の手順でインストールしただけの状態だと、
+          <code>docker</code> コマンドの実行に
+          <code>sudo</code> が必要になっています。
+        </p>
+        <p>
+          以下の手順でユーザーを <code>docker</code> グループに所属させることで
+          <code>sudo</code> なしで実行が可能になります。
+        </p>
+        <blockquote>
+          <p class="uk-text-small">
+            <code>docker</code> グループは Docker
+            のインストール時に自動で作成されています。
+          </p>
+        </blockquote>
+        <pre><code class="language-bash">sudo usermod -aG docker $USER
 
 # 一度ログアウトしないと有効化されない
 exit
 </code></pre>
-    <h2 id="docker-の自動起動設定">Docker の自動起動設定</h2>
-    <p>
-      WSL では
-      <code>systemd</code> を使用できないので、そのままだとログイン後に毎回
-      <code>sudo service docker start</code> する必要があります。
-      これを回避するための対策の 1 例は以下のとおりです。
-    </p>
-    <ol>
-      <li><code>Windowsキー + R</code> で [ファイル名を指定して実行] を選択</li>
-      <li>
-        <code>shell:startup</code> を実行して [スタートアップフォルダ] を開く
-      </li>
-      <li>
-        エディタを用いて以下の内容の
-        <code>.bat</code> ファイルを作成して保存する
-      </li>
-    </ol>
-    <pre><code class="language-bat">@echo off
+        <h2 id="docker-の自動起動設定">Docker の自動起動設定</h2>
+        <p>
+          WSL では
+          <code>systemd</code> を使用できないので、そのままだとログイン後に毎回
+          <code>sudo service docker start</code> する必要があります。
+          これを回避するための対策の 1 例は以下のとおりです。
+        </p>
+        <ol>
+          <li>
+            <code>Windowsキー + R</code> で [ファイル名を指定して実行] を選択
+          </li>
+          <li>
+            <code>shell:startup</code> を実行して [スタートアップフォルダ]
+            を開く
+          </li>
+          <li>
+            エディタを用いて以下の内容の
+            <code>.bat</code> ファイルを作成して保存する
+          </li>
+        </ol>
+        <pre><code class="language-bat">@echo off
 wsl -u root -- service docker start
 </code></pre>
-    <p>
-      これで Windows 起動時に WSL の Docker デーモンも立ち上がるようになります。
-    </p>
-    <hr />
-    <p>以上を完了すると Docker の実行環境は完成です。</p>
-    <h2 id="devcontainer-を使用してプロジェクトを開く">
-      DevContainer を使用してプロジェクトを開く
-    </h2>
-    <p>
-      まずは当プロジェクトを任意の
-      <code>Ubuntu</code>
-      上のディレクトリにクローンしてルートに移動してください。
-    </p>
-    <pre><code class="language-bash">
+        <p>
+          これで Windows 起動時に WSL の Docker
+          デーモンも立ち上がるようになります。
+        </p>
+        <hr />
+        <p>以上を完了すると Docker の実行環境は完成です。</p>
+        <h2 id="devcontainer-を使用してプロジェクトを開く">
+          DevContainer を使用してプロジェクトを開く
+        </h2>
+        <p>
+          まずは当プロジェクトを任意の
+          <code>Ubuntu</code>
+          上のディレクトリにクローンしてルートに移動してください。
+        </p>
+        <pre><code class="language-bash">
 git clone https://github.com/kurupeku/hello-golang.git
 cd hello-golang
-</div></code></pre>
-    <p>
-      プロジェクトのルートで以下のコマンドを打つと VSCode
-      がプロジェクトルートのディレクトリで立ち上がります。
-    </p>
-    <pre><code class="language-bash">
+</code></pre>
+        <p>
+          プロジェクトのルートで以下のコマンドを打つと VSCode
+          がプロジェクトルートのディレクトリで立ち上がります。
+        </p>
+        <pre><code class="language-bash">
 code .
 </code></pre>
-    <blockquote>
-      <p class="uk-text-small">
-        <code>code</code> コマンドは VSCode
-        を立ち上げるためのコマンドで、初回実行時に自動でインストールされます。Windows
-        側のディレクトリを立ち上げて WSL へマウントすると Windows 側の
-        <code>docker</code> コマンドを叩こうとして失敗します。必ず WSL
-        側のディレクトリを指定して開くようにしてください。
-      </p>
-    </blockquote>
-    <p>
-      上記のコマンドで VSCode が立ち上がったら右下に
-      <code>Reopen in Container</code>
-      という表示が出るのでこれをクリックするか、左下の
-      <code>&gt;&lt;</code> アイコンから
-      <code>Reopen in Container</code> を選択してください。
-    </p>
-    <p>
-      問題なく Docker が動作すれば、しばらくビルドが走った後に DevContainer 内で
-      VSCode が開き直されます。
-    </p>
-    <p>
-      <code>task test</code> を実行して Go
-      が起動した後、失敗して終わることを確認してください。
-    </p>
-    </article>
+        <blockquote>
+          <p class="uk-text-small">
+            <code>code</code> コマンドは VSCode
+            を立ち上げるためのコマンドで、初回実行時に自動でインストールされます。Windows
+            側のディレクトリを立ち上げて WSL へマウントすると Windows 側の
+            <code>docker</code> コマンドを叩こうとして失敗します。必ず WSL
+            側のディレクトリを指定して開くようにしてください。
+          </p>
+        </blockquote>
+        <p>
+          上記のコマンドで VSCode が立ち上がったら右下に
+          <code>Reopen in Container</code>
+          という表示が出るのでこれをクリックするか、左下の
+          <code>&gt;&lt;</code> アイコンから
+          <code>Reopen in Container</code> を選択してください。
+        </p>
+        <p>
+          問題なく Docker が動作すれば、しばらくビルドが走った後に DevContainer
+          内で VSCode が開き直されます。
+        </p>
+        <p>
+          <code>task test</code> を実行して Go
+          が起動した後、失敗して終わることを確認してください。
+        </p>
+      </article>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit-icons.min.js"></script>
   </body>
