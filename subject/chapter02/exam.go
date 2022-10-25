@@ -11,9 +11,9 @@ const (
 )
 
 func MinimumCoins(price uint) (count500, count100, count050, count010, count005, count001 uint) {
-	tax_included_price := uint(float64(price) * (1 + TaxRate))
-	count500 = uint(tax_included_price / Coin500)
-	amari_of_count500 := uint(tax_included_price % Coin500)
+	price_including_tax := uint(float64(price) * (1 + TaxRate))
+	count500 = uint(price_including_tax / Coin500)
+	amari_of_count500 := uint(price_including_tax % Coin500)
 
 	count100 = uint(amari_of_count500 / Coin100)
 	amari_of_count100 := uint(amari_of_count500 % Coin100)
