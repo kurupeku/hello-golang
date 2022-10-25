@@ -17,7 +17,7 @@ func TestTaxi(t *testing.T) {
 		want1 int
 	}{
 		{
-			name:  "Distance is 2900",
+			name:  "Distance is 1700",
 			args:  args{"1700"},
 			want:  500,
 			want1: 600,
