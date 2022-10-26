@@ -60,6 +60,11 @@ func TestInnerChargeFromTokyo(t *testing.T) {
 			args: args{"新橋"},
 			want: 490,
 		},
+		{
+			name: "To 大阪",
+			args: args{"大阪"},
+			want: 0,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -121,6 +126,11 @@ func TestOuterChargeFromTokyo(t *testing.T) {
 			name: "To 秋葉原",
 			args: args{"秋葉原"},
 			want: 490,
+		},
+		{
+			name: "To 大阪",
+			args: args{"大阪"},
+			want: 0,
 		},
 	}
 	for _, tt := range tests {
