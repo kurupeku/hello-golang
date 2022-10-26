@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello Golang</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/css/uikit.min.css"
+    />
+  </head>
+  <body>
+    <nav
+      class="uk-navbar-container uk-margin uk-padding uk-padding-remove-vertical"
+      uk-navbar
+    >
+      <a
+        class="uk-navbar-item uk-logo"
+        href="https://kurupeku.github.io/hello-golang/"
+        >Hello Golang</a
+      >
+
+      <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+          <li>
+            <a href="https://kurupeku.github.io/hello-golang/wsl.html"
+              >Setup Docker on WSL2</a
+            >
+          </li>
+          <li class="uk-active">
+            <a href="https://kurupeku.github.io/hello-golang/multipass.html"
+              >Setup Docker for on Multipass</a
+            >
+          </li>
+          <li>
+            <a href="https://kurupeku.github.io/hello-golang/golang.html"
+              >Setup Golang</a
+            >
+          </li>
+          <li>
+            <a href="https://kurupeku.github.io/hello-golang/go-task.html"
+              >Setup GoTask</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="uk-container uk-margin-large">
+      <article class="uk-article">
+        <h1 id="uk-article-title multipass-docker-on-mac-">
+          Multipass で Docker 動かす手順(on mac)
+        </h1>
+        <h2 id="1-multipass-">1.Multipass インストール</h2>
+        <p>
+          <a href="https://multipass.run/install">公式サイト</a>から Mac
+          用のインストーラーを DL するか、brew でインストールする
+        </p>
+        <pre><code class="lang-bash"><span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>--cask <span class="hljs-keyword">multipass</span>
+</code></pre>
+        <h2 id="2-multipass-">2.Multipass 起動</h2>
+        <p>以下コマンドで起動</p>
+        <pre><code class="lang-bash"><span class="hljs-comment">multipass</span> <span class="hljs-comment">launch</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">name</span> <span class="hljs-comment">docker</span><span class="hljs-literal">-</span><span class="hljs-comment">vm</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">cpus</span> <span class="hljs-comment">4</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">mem</span> <span class="hljs-comment">8G</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">disk</span> <span class="hljs-comment">32G</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">timeout</span> <span class="hljs-comment">3600</span> <span class="hljs-comment">20</span><span class="hljs-string">.</span><span class="hljs-comment">04</span>
+</code></pre>
+        <ul>
+          <li>
+            multipass 起動のタイムアウトはデフォルトだと 5
+            分なので、長めに設定する
+            <ul>
+              <li>タイムアウトになると環境が中途半端に作られてしまう</li>
+            </ul>
+          </li>
+          <li>
+            以下を指定して割り当てたいリソースを変更可能
+            <ul>
+              <li>cpus</li>
+              <li>mem</li>
+              <li>disk</li>
+            </ul>
+          </li>
+          <li>name は VM 名なので、任意の値で設定可能</li>
+        </ul>
+        <h2 id="3-multipass-">3.Multipass 起動確認</h2>
+        <pre><code class="lang-bash"><span class="hljs-comment"># VM(Ubuntu)にssh</span>
+<span class="hljs-keyword">multipass </span><span class="hljs-keyword">shell </span>docker-vm
+</code></pre>
+        <h2 id="4-multipass-">4.Multipass 上の環境構築</h2>
+        <pre><code class="lang-bash">sudo apt-get update
+
+sudo apt-get install -y <span class="hljs-tag">\<span class="hljs-name">
+</span></span>    apt-transport-https <span class="hljs-tag">\<span class="hljs-name">
+</span></span>    ca-certificates <span class="hljs-tag">\<span class="hljs-name">
+</span></span>    curl <span class="hljs-tag">\<span class="hljs-name">
+</span></span>    gnupg <span class="hljs-tag">\<span class="hljs-name">
+</span></span>    lsb-release
+
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo <span class="hljs-tag">\<span class="hljs-name">
+</span></span>  "deb [arch=<span class="hljs-formula">$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu <span class="hljs-tag">\<span class="hljs-name">
+</span></span>  $</span>(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+
+sudo apt-get update
+
+sudo apt-get install -y docker-ce docker-compose docker-ce-cli containerd.io docker-compose-plugin
+
+sudo gpasswd -a ubuntu docker
+
+sudo sed -ie 's/ExecStart=<span class="hljs-tag">\<span class="hljs-name">/</span></span>usr<span class="hljs-tag">\<span class="hljs-name">/</span></span>bin<span class="hljs-tag">\<span class="hljs-name">/</span></span>dockerd -H fd:<span class="hljs-tag">\<span class="hljs-name">/</span></span><span class="hljs-tag">\<span class="hljs-name">/</span></span>/ExecStart=<span class="hljs-tag">\<span class="hljs-name">/</span></span>usr<span class="hljs-tag">\<span class="hljs-name">/</span></span>bin<span class="hljs-tag">\<span class="hljs-name">/</span></span>dockerd -H tcp:<span class="hljs-tag">\<span class="hljs-name">/</span></span><span class="hljs-tag">\<span class="hljs-name">/</span></span>0.0.0.0:2375 -H fd:<span class="hljs-tag">\<span class="hljs-name">/</span></span><span class="hljs-tag">\<span class="hljs-name">/</span></span>/' /lib/systemd/system/docker.service
+
+sudo sed -ie 's/ExecStart=<span class="hljs-tag">\<span class="hljs-name">/</span></span>usr<span class="hljs-tag">\<span class="hljs-name">/</span></span>bin<span class="hljs-tag">\<span class="hljs-name">/</span></span>containerd/ExecStart=<span class="hljs-tag">\<span class="hljs-name">/</span></span>usr<span class="hljs-tag">\<span class="hljs-name">/</span></span>bin<span class="hljs-tag">\<span class="hljs-name">/</span></span>containerd<span class="hljs-tag">\<span class="hljs-name">nEnvironment</span>=</span>XDG_RUNTIME_DIR=<span class="hljs-tag">\<span class="hljs-name">/</span></span>run<span class="hljs-tag">\<span class="hljs-name">/</span></span>user<span class="hljs-tag">\<span class="hljs-name">/</span></span>1000/' /lib/systemd/system/containerd.service
+
+sudo systemctl daemon-reload
+
+sudo systemctl restart docker containerd
+
+exit
+</code></pre>
+        <p>
+          一旦 VM からログアウト後、再度 ssh
+          して以下を実行し、エラーが出なければ OK
+        </p>
+        <pre><code class="lang-bash"><span class="hljs-attribute">docker ps</span>
+</code></pre>
+        <h2 id="5-docker-docker-compose-jq-">
+          5.ローカル環境で docker コマンド、docker-compose コマンド、jq
+          コマンドをインストール
+        </h2>
+        <p>未インストールの場合のみ</p>
+        <pre><code class="lang-bash"><span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>docker
+<span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>docker-compose
+<span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span><span class="hljs-keyword">jq</span>
+</code></pre>
+        <h2 id="6-multipass-">6.ローカルディレクトリを multipass にマウント</h2>
+        <pre><code class="lang-bash">multipass mount <span class="hljs-regexp">/Users docker-vm:/</span>Users
+multipass mount <span class="hljs-regexp">/private/</span>tmp docker-<span class="hljs-string">vm:</span>/tmp
+</code></pre>
+        <h2 id="7-docker-">7.ローカルの docker コンテキスト切り替え</h2>
+        <pre><code class="lang-bash"><span class="hljs-meta"># dockerコンテキストの新規作成</span>
+docker context create docker-vm --docker <span class="hljs-string">"host=tcp://$(multipass info docker-vm --format json | jq -r '.info["</span>docker-vm<span class="hljs-string">"].ipv4[0]'):2375"</span>
+
+<span class="hljs-meta"># 新しいdockerコンテキストが追加されていることを確認</span>
+docker context ls
+
+<span class="hljs-meta"># dockerコンテキスト切り替え</span>
+docker context use docker-vm
+
+<span class="hljs-meta"># multipass上のdockerに正常に繋がっていることを確認</span>
+docker ps
+</code></pre>
+      </article>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit-icons.min.js"></script>
+  </body>
+</html>
