@@ -11,18 +11,19 @@ const (
 )
 
 func MinimumCoins(price uint) (count500, count100, count050, count010, count005, count001 uint) {
-	p := float64(price) * (1 + TaxRate)
-	count500, remain1 := divmod(uint(p), Coin500)
-	count100, remain2 := divmod(remain1, Coin100)
-	count050, remain3 := divmod(remain2, Coin050)
-	count010, remain4 := divmod(remain3, Coin010)
-	count005, remain5 := divmod(remain4, Coin005)
-	count001, _ = divmod(remain5, Coin001)
+	p := uint(float64(price) * (1 + TaxRate))
+	count500 = divmod(&p, Coin500)
+	count100 = divmod(&p, Coin100)
+	count050 = divmod(&p, Coin050)
+	count010 = divmod(&p, Coin010)
+	count005 = divmod(&p, Coin005)
+	count001 = divmod(&p, Coin001)
 	return
 }
 
-func divmod(numerator, denominator uint) (quotient, remainder uint) {
-	quotient = numerator / denominator // integer division, decimals are truncated
-	remainder = numerator % denominator
+func divmod(price *uint, denominator uint) (count uint) {
+	p := *price
+	count = p / denominator
+	*price = p % denominator
 	return
 }
