@@ -56,8 +56,8 @@
 
 `helper` パッケージ内に
 
-- `func InnerLoopDistance(current string) string` 内回り用
-- `func OuterLoopDistance(current string) string` 外回り用
+- `func InnerLoopDistance(current string) int` 内回り用
+- `func OuterLoopDistance(current string) int` 外回り用
 
 を用意しています。
 
