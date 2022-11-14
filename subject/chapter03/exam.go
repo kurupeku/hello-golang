@@ -1,8 +1,6 @@
 package chapter03
 
 import (
-	"fmt"
-
 	"github.com/kurupeku/hello-golang/helper"
 )
 
@@ -10,79 +8,115 @@ import (
 func InnerChargeFromTokyo(station string) int {
 	// TODO: 実装
 
-	// next_station（隣の駅）を文字列として扱う
-	var next_station string
-	// distance_to_next_station（隣の駅までの距離）を整数として扱う
+	//問題文から目的地が東京の場合には0円を返す
+	if station == "東京" {
+		return 0
+	}
+
+	//出発駅に東京駅を設定する
+	//var station string = "東京" としてしまうと次に求める駅を定義することができない
+	//以下の通りにすると、最初に求めるのが東京なので、ループができる
+	var next_station string = "東京"
+	//次の駅までの距離をint(整数)で定義する
 	var distance_to_next_station int
-	// start_station（出発駅：東京）を文字列として扱う
-	var start_station string
-	// total_distance（総距離）を整数として扱う
+	//目的地までの総距離をint(整数)で定義する
 	var total_distance int
-	//next_station にてhelperを用いて次の駅を出す
-	next_station = helper.InnerNextStation(station)
-	//distance_to_next_station にてhelperを用いて次の駅までの距離を出す
-	distance_to_next_station = helper.InnerLoopDistance(station)
 
-	// 問題分のテーブルからpriceに料金を格納する
-	//var price int = (140, 160, 170, 200, 270, 350, 420, 490)
-	// 問題分のテーブルからdistanceに距離を格納する
-	//var distance_station int = (3999, 6999, 10999, 15999, 20999, 25999, 30999)
-
-	//東京駅を出発駅に設定して、次の駅を求める
-	if start_station == "東京" {
-		fmt.Println(next_station)
-	}
-	//東京駅から次の駅までの距離（m）を求める
-	if start_station == "東京" {
-		fmt.Println(distance_to_next_station)
-	}
-
-	//駅とその次の駅、その2つの駅間の距離を表示する
-	fmt.Println(station)
-	fmt.Println(next_station)
-	fmt.Println(distance_to_next_station)
-	//fmt.Println(price)
-
-	//目的地までの総距離を合計する。40000m未満となるまで合計する
-	for total_distance := 0; total_distance < 40000; total_distance++ {
-
-		//総距離には隣の駅までの距離を合計する
-		total_distance += distance_to_next_station
-		//総距離が40000mに至った場合、処理を終了する
-		if total_distance == 40000 {
+	//駅数をiで記載し、上限30個の駅に達するまで同じ処理を繰り返す
+	for i := 0; i < 30; i++ {
+		//helperを用いて次の駅の名前を求め、next_stationに格納
+		next_station = helper.InnerNextStation(next_station)
+		//helperを用いて次の駅までの距離を求め、distance_to_next_stationに格納
+		distance_to_next_station = helper.InnerLoopDistance(next_station)
+		//目的地までの総距離を1回求めるごとに次の駅までの距離を加算し、total_distanceに格納
+		total_distance = total_distance + distance_to_next_station
+		//求める駅まで来たら、処理を終了する
+		if next_station == station {
 			break
 		}
 	}
 
-	//総距離を表示する
-	fmt.Println(total_distance)
-	//fmt.Println(price)
-	return 0
+	//目的地までの総距離が3999m以下ならば、140円を返す
+	if total_distance <= 3999 {
+		return 140
+		//目的地までの総距離が4000m以上6999m以下ならば、160円を返す
+	} else if total_distance >= 4000 && total_distance <= 6999 {
+		return 160
+		//目的地までの総距離が7000m以上10999m以下ならば、170円を返す
+	} else if total_distance >= 7000 && total_distance <= 10999 {
+		return 170
+		//目的地までの総距離が11000m以上15999m以下ならば、200円を返す
+	} else if total_distance >= 11000 && total_distance <= 15999 {
+		return 200
+		//目的地までの総距離が16000m以上20999m以下ならば、270円を返す
+	} else if total_distance >= 16000 && total_distance <= 20999 {
+		return 270
+		//目的地までの総距離が21000m以上25999m以下ならば、350円を返す
+	} else if total_distance >= 21000 && total_distance <= 25999 {
+		return 350
+		//目的地までの総距離が26000m以上30999m以下ならば、420円を返す
+	} else if total_distance >= 26000 && total_distance <= 30999 {
+		return 420
+		//それ以外は490円を返す
+	} else {
+		return 490
+	}
 }
 
 // Switch を使用して料金の条件分岐を行ってください
 func OuterChargeFromTokyo(station string) int {
 	// TODO: 実装
 
-	// next_stationを文字列として扱う
-	var next_station string
-	// distance_to_next_stationを整数として扱う
-	var distance_to_next_station int
-	// start_stationを文字列として扱う
-	var start_station string
-	//next_station にてhelperを用いて次の駅を呼び出す
-	next_station = helper.OuterNextStation(station)
-	//distance_to_next_station にてhelperを用いて次の駅までの距離を出す
-	distance_to_next_station = helper.OuterLoopDistance(station)
-
-	//東京駅を出発駅に設定して、次の駅を求める
-	start_station = "東京"
-	switch start_station {
-	case "東京":
-		//駅とその次の駅、当駅間の距離を表示する
-		fmt.Println(station)
-		fmt.Println(next_station)
-		fmt.Println(distance_to_next_station)
+	//問題文から目的地が東京の場合には0円を返す
+	if station == "東京" {
+		return 0
 	}
-	return 0
+
+	//出発駅に東京駅を設定する
+	//var station string = "東京" としてしまうと次に求める駅を定義することができない
+	//以下の通りにすると、最初に求めるのが東京なので、ループができる
+	var next_station string = "東京"
+	var distance_to_next_station int
+	var total_distance int
+
+	//駅数をiで記載し、上限30個の駅に達するまで同じ処理を繰り返す
+	for i := 0; i < 30; i++ {
+		//helperを用いて次の駅の名前を求め、next_stationに格納
+		next_station = helper.OuterNextStation(next_station)
+		//helperを用いて次の駅までの距離を求め、distance_to_next_stationに格納
+		distance_to_next_station = helper.OuterLoopDistance(next_station)
+		//目的地までの総距離を1回求めるごとに次の駅までの距離を加算し、total_distanceに格納
+		total_distance = total_distance + distance_to_next_station
+		//求める駅まで来たら、処理を終了する
+		if next_station == station {
+			break
+		}
+	}
+
+	switch {
+	//目的地までの総距離が3999m以下ならば、140円を返す
+	case total_distance <= 3999:
+		return 140
+	//目的地までの総距離が4000m以上6999m以下ならば、160円を返す
+	case total_distance >= 4000 && total_distance <= 6999:
+		return 160
+	//目的地までの総距離が7000m以上10999m以下ならば、170円を返す
+	case total_distance >= 7000 && total_distance <= 10999:
+		return 170
+	//目的地までの総距離が11000m以上15999m以下ならば、200円を返す
+	case total_distance >= 11000 && total_distance <= 15999:
+		return 200
+	//目的地までの総距離が21000m以上25999m以下ならば、270円を返す
+	case total_distance >= 16000 && total_distance <= 20999:
+		return 270
+	//目的地までの総距離が21000m以上25999m以下ならば、350円を返す
+	case total_distance >= 21000 && total_distance <= 25999:
+		return 350
+	//目的地までの総距離が26000m以上30999m以下ならば、420円を返す
+	case total_distance >= 26000 && total_distance <= 30999:
+		return 420
+	//それ以外は490円を返す
+	default:
+		return 490
+	}
 }
