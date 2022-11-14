@@ -1,8 +1,6 @@
 package chapter03
 
 import (
-	"fmt"
-
 	"github.com/kurupeku/hello-golang/helper"
 )
 
@@ -12,16 +10,14 @@ func InnerChargeFromTokyo(station string) int {
 	next := ""
 	distance := 0
 
-	switch {
-	case current == "東京":
+	if current == "東京" {
 		return 0
-	case current != "東京":
-		for current != "東京" {
-			next = helper.OuterNextStation(current)
-			distance += helper.OuterLoopDistance(next)
-			fmt.Println("distance=", distance, "current=", current, " next=", next)
-			current = next
-		}
+	}
+
+	for current != "東京" {
+		next = helper.OuterNextStation(current)
+		distance += helper.OuterLoopDistance(next)
+		current = next
 	}
 	return DistanceToCharge(distance)
 }
@@ -32,19 +28,18 @@ func OuterChargeFromTokyo(station string) int {
 	next := ""
 	distance := 0
 
-	if current == "東京" {
+	switch {
+	case current == "東京":
 		return 0
-	}
-
-	for current != "東京" {
-		next = helper.InnerNextStation(current)
-		distance += helper.InnerLoopDistance(next)
-		fmt.Println("distance=", distance, "current=", current, " next=", next)
-		current = next
+	case current != "東京":
+		for current != "東京" {
+			next = helper.InnerNextStation(current)
+			distance += helper.InnerLoopDistance(next)
+			current = next
+		}
 	}
 	return DistanceToCharge(distance)
 }
-
 func DistanceToCharge(distance int) int {
 	charge := 0
 	switch {
