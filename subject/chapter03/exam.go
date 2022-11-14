@@ -2,7 +2,7 @@ package chapter03
 
 import "github.com/kurupeku/hello-golang/helper"
 const tokyo = "東京"
-// If を使用して料金の条件分岐を行ってください
+// If を使用して料金の条件分岐を行ってください。
 func InnerChargeFromTokyo(station string) int {
 	if station == tokyo {
 		return 0
