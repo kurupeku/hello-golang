@@ -22,8 +22,11 @@ const perDistance = 250
 func Taxi(distance string) (int, int) {
 	// TODO: 実装
 
+	// 変数名testを定義（距離のメートル単位を格納する）
 	var test int
+	// 通常料金を変数名へ格納
 	var totalamount int
+	//
 	var latenightcharge float64
 	test = helper.ParseDistance(distance)
 	totalamount = firstPrice + (test-firstRideDistance)/perDistance*perPrice
