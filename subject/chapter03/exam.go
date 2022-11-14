@@ -7,17 +7,14 @@ func InnerChargeFromTokyo(station string) int {
 	if station == tokyo {
 		return 0
 	}
-
 	var currentStation = "東京"
 	var nextStation string
 	var Kyori int
-
 	for currentStation != station {
 		nextStation = helper.InnerNextStation(currentStation)
 		Kyori = Kyori + helper.InnerLoopDistance(nextStation)
 		currentStation = nextStation
 	}
-
 	if Kyori >= 31000 {
 		return 490
 	}
@@ -49,17 +46,14 @@ func OuterChargeFromTokyo(station string) int {
 	if station == tokyo {
 		return 0
 	}
-
 	var currentStation = "東京"
 	var nextStation string
 	var Kyori int
-
 	for currentStation != station {
 		nextStation = helper.OuterNextStation(currentStation)
 		Kyori = Kyori + helper.OuterLoopDistance(nextStation)
 		currentStation = nextStation
 	}
-
 	switch {
 	case Kyori >= 31000:
 		return 490
