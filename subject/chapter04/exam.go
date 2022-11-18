@@ -9,23 +9,25 @@ func Kaisatsu(charge int, card *Card) bool {
 	// TODO: 実装
 	var c = card
 	// まずは通れるか通れないかの2パターン
-	// 通れないパターン
+	// 通れないパターン(ポイント＋残高をchargeが超えている場合)
 	// falseで抜けるだけ
 	if charge > (c.Point + c.Balance) {
 		return false
 	}
 	// 通れるパターンは2通り
-	if (charge - c.Point) > 0 {
+	// ポイントだけで通れる場合
+	// ポイントと残高で通れる場合
+	if charge < c.Point {
+		/// ポイントだけで払えるパターン処理
+		/// Pointからchargeを引く
+		c.Point = c.Point - charge
+		return true
+	} else {
 		/// ポイントだけで払えないパターン処理
-		//// chargeからpoint分を引いた値をBalanceから減算
+		/// 残高＋ポイント－charge
 		c.Balance = c.Balance + c.Point - charge
 		//// Pointだけで払えないからPointは全部使う
 		c.Point = 0
-		return true
-	} else {
-		/// ポイントだけで払えるパターン処理
-		//// Pointだけで払えるからPointからchargeを引く
-		c.Point = c.Point - charge
 		return true
 	}
 }
