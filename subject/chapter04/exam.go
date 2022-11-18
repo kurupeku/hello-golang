@@ -19,7 +19,7 @@ func Kaisatsu(charge int, card *Card) bool {
 	// 1a乗車料金が残高以内の場合
 	if total-charge >= 0 {
 		// 2a ICカード内のポイントに余りがある場合
-		if card.Point > 0 {
+		if card.Point != 0 {
 			// 3 ポイントを乗車料金分差し引く
 			tmp = card.Point - charge
 			// 3a ポイントから差し引いた後、ポイントがマイナスになる場合
