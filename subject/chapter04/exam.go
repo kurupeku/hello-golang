@@ -27,19 +27,15 @@ func Kaisatsu(charge int, card *Card) bool {
 				// カードポイントを0にする
 				card.Point = 0
 				// カード残高から不足分を減算処理する
-				// card.Balance = card.Balance + tmp
-				// こういう書き方もあるらしい
 				card.Balance += tmp
 				return true
-				// 3b ポイントから差し引いた後、ポイントが0以上になる場合
+				// 3b ポイントから差し引いた後にポイントが0以上になる場合、減算した値をポイントにセットする。
 			} else {
 				card.Point = tmp
 				return true
 			}
 			// 2b ICカード内のポイント残高が0の場合
 		} else {
-			// card.Balance = card.Balance - charge
-			// こういう書き方もあるらしい
 			card.Balance -= charge
 			return true
 		}
