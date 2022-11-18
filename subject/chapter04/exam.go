@@ -16,7 +16,7 @@ func Kaisatsu(charge int, card *Card) bool {
 	total = card.Balance + card.Point
 
 	// 1 そもそもICカード残高より乗車料金が高いかどうか
-	// 1a乗車料金が残高以内の場合
+	// 1a 乗車料金が残高以内の場合
 	if total-charge >= 0 {
 		// 2a ICカード内のポイントに余りがある場合
 		if card.Point != 0 {
