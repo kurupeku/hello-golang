@@ -12,6 +12,7 @@ func Kaisatsu(charge int, card *Card) bool {
 	var total int
 	var tmp int
 
+	// ICカード内の総残高算出
 	total = card.Balance + card.Point
 
 	// 1 そもそもICカード残高より乗車料金が高いかどうか
