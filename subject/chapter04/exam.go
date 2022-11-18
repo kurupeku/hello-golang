@@ -26,7 +26,7 @@ func Kaisatsu(charge int, card *Card) bool {
 		/// ポイントだけで払えないパターン処理
 		/// 残高＋ポイント－charge
 		c.Balance = c.Balance + c.Point - charge
-		//// Pointだけで払えないからPointは全部使う
+		/// ポイントは全部使うから0
 		c.Point = 0
 		return true
 	}
