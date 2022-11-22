@@ -20,7 +20,6 @@ func MatrixMultiple(seed []int) [][]int {
 	}
 	var result [][]int
 	array := []int{}
-	println(seed[0])
 	for i := 0; i < len(seed); i++ {
 		for j := 0; j < len(seed); j++ {
 			tmp := seed[i] * seed[j]
