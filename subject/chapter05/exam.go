@@ -18,6 +18,7 @@ func MatrixMultiple(seed []int) [][]int {
 	if len(seed) == 0 {
 		return [][]int{}
 	}
+	/* 別回試す
 	var result [][]int
 	array := []int{}
 	for i := 0; i < len(seed); i++ {
@@ -27,6 +28,16 @@ func MatrixMultiple(seed []int) [][]int {
 		}
 		result = append(result, [][]int{array}...)
 		array = []int{}
+	}
+	*/
+	result := make([][]int, len(seed))
+	for i, _ := range seed {
+		result[i] = make([]int, len(seed))
+	}
+	for index, value := range seed {
+		for index2, value2 := range seed {
+			result[index][index2] = value * value2
+		}
 	}
 	return result
 }
