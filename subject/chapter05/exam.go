@@ -23,6 +23,16 @@ func DarumaDrop(daruma []int) []int {
 }
 
 func MatrixMultiple(seed []int) [][]int {
-	// TODO: 実装
-	return [][]int{}
+	matrix := make([][]int, len(seed))
+
+	for i := 0; i < len(seed); i++ {
+		matrix[i] = make([]int, len(seed))
+
+		for j := 0; j < len(seed); j++ {
+			matrix[i][j] = seed[i] * seed[j]
+		}
+		//fmt.Printf("%d\n", matrix[i])
+	}
+
+	return matrix
 }
