@@ -36,6 +36,7 @@ func DarumaDrop(daruma []int) []int {
 		if length > 2 {
 			for i = 0; i < length; i++ {
 				if i == (tmp2 - 1) {
+					// ここが処理スキップに該当
 					fmt.Printf("\ni:%d hit\n", i)
 					fmt.Printf("daruma1: %d\n", daruma[i])
 				} else {
@@ -52,9 +53,9 @@ func DarumaDrop(daruma []int) []int {
 		if length > 2 {
 			for i = 0; i < length; i++ {
 				if i == (tmp2) {
+					// ここが処理スキップに該当
 					fmt.Printf("\ni:%d hit\n", i)
 					fmt.Printf("daruma1: %d\n", daruma[i])
-
 				} else {
 					fmt.Printf("daruma2: %d\n", daruma[i])
 					array_tmp3 = append(array_tmp3, daruma[i])
