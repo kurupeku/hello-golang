@@ -32,7 +32,6 @@ func DarumaDrop(daruma []int) []int {
 		}
 		return array_tmp3
 	} else {
-		var array_tmp3 []int
 		for i = 0; i < length; i++ {
 			if i != (tmp2) {
 				array_tmp3 = append(array_tmp3, daruma[i])
