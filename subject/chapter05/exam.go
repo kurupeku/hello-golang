@@ -12,27 +12,27 @@ func DarumaDrop(daruma []int) []int {
 	length = len(daruma)
 	tmp = length % 2
 	tmp2 = length / 2
+
 	if length < 2 {
 		return daruma
+	} else if length == 2 {
+		array_tmp := make([]int, length-1)
+		array_tmp[0] = daruma[1]
+		return array_tmp
 	}
-	// 偶数
+
 	var i int
 	var array_tmp3 []int
+	// 偶数
 	if tmp == 0 {
-		if length == 2 {
-			array_tmp := make([]int, length-1)
-			array_tmp[0] = daruma[1]
-			return array_tmp
-		}
-		if length > 2 {
-			for i = 0; i < length; i++ {
-				if i != (tmp2 - 1) {
-					array_tmp3 = append(array_tmp3, daruma[i])
-				}
+		for i = 0; i < length; i++ {
+			if i != (tmp2 - 1) {
+				array_tmp3 = append(array_tmp3, daruma[i])
 			}
 		}
 		return array_tmp3
 	} else {
+		var array_tmp3 []int
 		for i = 0; i < length; i++ {
 			if i != (tmp2) {
 				array_tmp3 = append(array_tmp3, daruma[i])
