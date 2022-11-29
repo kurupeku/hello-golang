@@ -41,7 +41,6 @@ func DarumaDrop(daruma []int) []int {
 
 func MatrixMultiple(seed []int) [][]int {
 	// TODO: 実装
-	var tmp int
 	array := make([][]int, len(seed))
 	if len(seed) == 0 {
 		return [][]int{}
@@ -49,8 +48,7 @@ func MatrixMultiple(seed []int) [][]int {
 	for i := range seed {
 		array[i] = make([]int, len(seed))
 		for j := range seed {
-			tmp = seed[i] * seed[j]
-			array[i][j] = tmp
+			array[i][j] = seed[i] * seed[j]
 		}
 	}
 	return array
