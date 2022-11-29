@@ -1,9 +1,5 @@
 package chapter05
 
-import (
-	"fmt"
-)
-
 func DarumaDrop(daruma []int) []int {
 	// TODO: 実装
 
@@ -16,50 +12,30 @@ func DarumaDrop(daruma []int) []int {
 	length = len(daruma)
 	tmp = length % 2
 	tmp2 = length / 2
-	fmt.Printf("daruma: %d\n", daruma)
-	fmt.Printf("length: %d\n", length)
-	fmt.Printf("割り算tmp: %d\n", tmp)
-	fmt.Printf("割り算tmp2: %d\n", tmp2)
 	if length < 2 {
 		return daruma
 	}
 	// 偶数
 	var i int
+	var array_tmp3 []int
 	if tmp == 0 {
-		array_tmp := make([]int, length-1)
-		var array_tmp3 []int
-		fmt.Printf("array_tmp length: %d\n", len(array_tmp))
 		if length == 2 {
+			array_tmp := make([]int, length-1)
 			array_tmp[0] = daruma[1]
 			return array_tmp
 		}
 		if length > 2 {
 			for i = 0; i < length; i++ {
-				if i == (tmp2 - 1) {
-					// ここが処理スキップに該当
-					fmt.Printf("\ni:%d hit\n", i)
-					fmt.Printf("daruma1: %d\n", daruma[i])
-				} else {
-					fmt.Printf("daruma2: %d\n", daruma[i])
+				if i != (tmp2 - 1) {
 					array_tmp3 = append(array_tmp3, daruma[i])
-
 				}
 			}
 		}
-		fmt.Printf("array_tmp3: %d\n", array_tmp3)
 		return array_tmp3
 	} else {
-		var array_tmp3 []int
-		if length > 2 {
-			for i = 0; i < length; i++ {
-				if i == (tmp2) {
-					// ここが処理スキップに該当
-					fmt.Printf("\ni:%d hit\n", i)
-					fmt.Printf("daruma1: %d\n", daruma[i])
-				} else {
-					fmt.Printf("daruma2: %d\n", daruma[i])
-					array_tmp3 = append(array_tmp3, daruma[i])
-				}
+		for i = 0; i < length; i++ {
+			if i != (tmp2) {
+				array_tmp3 = append(array_tmp3, daruma[i])
 			}
 		}
 		return array_tmp3
@@ -73,22 +49,12 @@ func MatrixMultiple(seed []int) [][]int {
 	if len(seed) == 0 {
 		return [][]int{}
 	}
-	print("スタート\n")
-	fmt.Printf("seed: %d\n", seed)
 	for i := range seed {
 		array[i] = make([]int, len(seed))
 		for j := range seed {
 			tmp = seed[i] * seed[j]
-			fmt.Printf("値 i:%d j:%d\n", i, j)
-			fmt.Printf("seed[i]:%d seed[j]:%d\n", seed[i], seed[j])
-			fmt.Printf("掛け算の結果:%d\n", tmp)
 			array[i][j] = tmp
 		}
 	}
 	return array
-
-}
-
-func remove(slice []int, s int) []int {
-	return append(slice[:s], slice[s+1:]...)
 }
