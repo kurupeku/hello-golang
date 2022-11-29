@@ -23,22 +23,20 @@ func DarumaDrop(daruma []int) []int {
 
 	var i int
 	var array_tmp3 []int
-	// 偶数
-	if tmp == 0 {
-		for i = 0; i < length; i++ {
+	for i = 0; i < length; i++ {
+		// 偶数
+		if tmp == 0 {
 			if i != (tmp2 - 1) {
 				array_tmp3 = append(array_tmp3, daruma[i])
 			}
-		}
-		return array_tmp3
-	} else {
-		for i = 0; i < length; i++ {
+			// 奇数
+		} else {
 			if i != (tmp2) {
 				array_tmp3 = append(array_tmp3, daruma[i])
 			}
 		}
-		return array_tmp3
 	}
+	return array_tmp3
 }
 
 func MatrixMultiple(seed []int) [][]int {
