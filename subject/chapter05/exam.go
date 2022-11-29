@@ -9,23 +9,14 @@ func DarumaDrop(daruma []int) []int {
 	// 要素数１個以下はスルー
 	if darumaLength < 2 { return daruma }
 
-	// 奇数偶数判定用
-	fractionNum := darumaLength % 2
+	// 冒頭の個数
+	keepLength := (darumaLength - 1) / 2
 
-	// 両端に必ず残る個数
-	keepLength := darumaLength / 2 + fractionNum - 1
-
-	// 最初に冒頭だけ切り取る
+	// 冒頭だけ取得
 	excludedDaruma := daruma[:keepLength]
 
-	// 偶数個の場合、真ん中の２個を比較して大きい方を取得
-	if largerNum := &daruma[keepLength]; fractionNum == 0 {
-		if *largerNum < daruma[keepLength + 1] { largerNum = &daruma[keepLength + 1] }
-		excludedDaruma = append(excludedDaruma, *largerNum)
-	}
-
-	// 末尾を連結して返す
-	return append(excludedDaruma, daruma[darumaLength - keepLength:]...)
+	// 末尾を連結
+	return append(excludedDaruma, daruma[keepLength+1:]...)
 }
 
 func MatrixMultiple(seed []int) [][]int {
