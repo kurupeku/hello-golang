@@ -18,9 +18,9 @@ func DarumaDrop(daruma []int) []int {
 		median--
 	}
 
-	// darumaの要素分ループ(indexは捨てて、値はiへ格納)
+	// darumaの要素分ループ(indexは捨てて、値はvalueへ格納)
 	for _, value := range daruma {
-		// rangeで取得したdarumaの値iが、中央値と異なる場合はappendでafterDarumaに要素を追加する
+		// rangeで取得したdarumaの値valueが、中央値と異なる場合はappendでafterDarumaに要素を追加する
 		if value != daruma[median] {
 			afterDaruma = append(afterDaruma, value)
 		}
