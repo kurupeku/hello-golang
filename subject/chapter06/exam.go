@@ -43,12 +43,10 @@ func Nabeatsu(n int) []string {
 		multiple_three := i % 3
 		switch {
 		case strings.Contains(arg_str, "3"):
-			aho := AhoNumber(i)
-			saaaan := aho.aho()
+			saaaan := arg.aho()
 			str_array = append(str_array, saaaan)
 		case multiple_three == 0:
-			aho := AhoNumber(i)
-			saaaan := aho.aho()
+			saaaan := arg.aho()
 			str_array = append(str_array, saaaan)
 		default:
 			aho := AhoNumber(i)
