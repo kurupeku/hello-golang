@@ -2,6 +2,7 @@ package chapter06
 
 import (
 	"strconv"
+	"strings"
 
 	"github.com/kurupeku/hello-golang/helper"
 )
@@ -17,11 +18,20 @@ func (n AhoNumber) aho() string {
 }
 
 func (n AhoNumber) Call() string {
-	// TODO: 実装
-	return ""
+	a := ""
+	if s := n.String(); int(n)%3 == 0 || strings.Contains(s, "3") {
+		a = n.aho()
+	} else {
+		a = s
+	}
+	return a
 }
 
 func Nabeatsu(n int) []string {
-	// TODO: 実装
-	return []string{}
+	aho := make([]string, n)
+	for i := 1; i <= n; i++ {
+		a := AhoNumber(i)
+		aho[i-1] = a.Call()
+	}
+	return aho
 }
