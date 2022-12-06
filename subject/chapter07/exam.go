@@ -1,7 +1,9 @@
 package chapter07
 
 import (
+	"fmt"
 	"sort"
+	"strings"
 )
 
 type Item struct {
@@ -27,9 +29,26 @@ func (c *Casher) itemNames() []string {
 
 func (c *Casher) Purchase(item *Item) {
 	// TODO: 実装
+	if c.List == nil {
+		c.List = make(map[string]int, 3)
+	}
+	c.List[item.Name] += item.Price
+	c.TotalPrice += item.Price
 }
 
 func (c *Casher) Receipt() string {
 	// TODO: 実装
-	return ""
+	receipt := "\n"
+	receipt += "ラーメン道 楽酢\n"
+	receipt += "\n"
+	//ないよう繰り返し
+	for _, v := range c.itemNames() {
+		receipt += fmt.Sprintf("%-10s:%9d\n", v, c.List[v])
+	}
+	receipt += strings.Repeat("-", 20)
+	receipt += "\n"
+	receipt += fmt.Sprintf("%20d\n", c.TotalPrice)
+
+	return receipt
+
 }
