@@ -36,6 +36,16 @@ func (c *Casher) Purchase(item *Item) {
 }
 
 func (c *Casher) Receipt() string {
-	// TODO: 実装
-	return ""
+	r := "\nラーメン道 楽酢\n\n"
+
+	for _, key := range c.itemNames() {
+		r += fmt.Sprintf("%-10s:%9d\n", key, c.List[key])
+	}
+
+	r += "--------------------\n"
+	r += fmt.Sprintf("%20d\n", c.TotalPrice)
+
+	//fmt.Println(r)
+
+	return r
 }
