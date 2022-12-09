@@ -43,7 +43,7 @@ func (c *Casher) Receipt() string {
 
 	var receipt string
 
-	receipt += "\nラーメン道 楽酢\n"
+	receipt += "\nラーメン道 楽酢\n\n"
 
 	for _, name := range names {
 		receipt += fmt.Sprintf("%-10s:%9d\n", name, c.List[name])
