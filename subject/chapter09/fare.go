@@ -8,7 +8,7 @@ type Fare struct {
 }
 
 func (f *Fare) innerDistance() int {
-	// TODO: 内回りの料金を返すように実装
+	// TODO: 内回りの距離を返すように実装
 	return 0
 }
 
