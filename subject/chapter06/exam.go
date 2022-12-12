@@ -34,7 +34,7 @@ func Nabeatsu(n int) []string {
 	for i := 1; i <= n; i++ {
 		aho := AhoNumber(i)
 		x = append(x, aho.Call())
-		//	fmt.Println(x[i])
+		//	fmt.Println(x[i-1])
 	}
 	return x
 }
