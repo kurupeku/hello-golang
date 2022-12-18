@@ -12,23 +12,17 @@ func Kaisatsu(from, to string, charger Charger) (bool, error) {
 		return false, errors.New("[ERROR] 発着駅が同一です")
 	}
 
+	var pay int
 	if _, isTicket := charger.(*Ticket); isTicket {
-		pay := fare.TicketCharge()
-		if charger.Amount() >= pay {
-			charger.Use(pay)
-			return true, nil
-		} else {
-			return false, nil
-		}
+		pay = fare.TicketCharge()
 	} else if _, isCard := charger.(*Card); isCard {
-		pay := fare.CardCharge()
-		if charger.Amount() >= pay {
-			charger.Use(pay)
-			return true, nil
-		} else {
-			return false, nil
-		}
+		pay = fare.CardCharge()
 	}
 
-	return false, nil
+	if charger.Amount() >= pay {
+		charger.Use(pay)
+		return true, nil
+	} else {
+		return false, nil
+	}
 }
