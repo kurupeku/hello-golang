@@ -13,10 +13,13 @@ func Kaisatsu(from, to string, charger Charger) (bool, error) {
 	}
 
 	var pay int
-	if _, isTicket := charger.(*Ticket); isTicket {
+	switch charger.(type) {
+	case *Ticket:
 		pay = fare.TicketCharge()
-	} else if _, isCard := charger.(*Card); isCard {
+	case *Card:
 		pay = fare.CardCharge()
+	default:
+		return false, nil
 	}
 
 	if charger.Amount() >= pay {
