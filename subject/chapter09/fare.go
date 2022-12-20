@@ -1,6 +1,6 @@
 package chapter09
 
-import "github.com/kurupeku/hello-golang/helper"
+//import "github.com/kurupeku/hello-golang/helper"
 
 type Fare struct {
 	From string
