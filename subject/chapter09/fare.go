@@ -1,6 +1,10 @@
 package chapter09
 
-import "github.com/kurupeku/hello-golang/helper"
+import (
+	// "fmt"
+
+	"github.com/kurupeku/hello-golang/helper"
+)
 
 type Fare struct {
 	From string
@@ -43,10 +47,15 @@ func (f *Fare) distance() int {
 
 	switch {
 	case f.innerDistance() < f.outerDistance():
-		distance = f.outerDistance()
-	default:
 		distance = f.innerDistance()
+	default:
+		distance = f.outerDistance()
 	}
+	/*
+		fmt.Printf("innerDistance is = %v \n", f.innerDistance())
+		fmt.Printf("outerDistance is = %v \n", f.outerDistance())
+		fmt.Printf("distance is = %v \n", distance)
+	*/
 
 	return distance
 }

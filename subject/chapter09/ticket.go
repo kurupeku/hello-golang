@@ -1,6 +1,6 @@
 package chapter09
 
-import "fmt"
+//import "fmt"
 
 // Ticket と Card をまとめて改札に渡す際に用いる interface
 type Charger interface {
@@ -27,7 +27,7 @@ func (t Ticket) Amount() int {
 
 func (t *Ticket) Use(charge int) {
 	switch {
-	case charge >= t.Price:
+	case charge <= t.Price:
 		t.Used = true
 	}
 }
@@ -50,14 +50,11 @@ func (c *Card) Use(charge int) {
 	switch {
 	case charge < c.Point:
 		c.Point -= charge
-		fmt.Println("*Card = ", c)
-
+		//fmt.Println("*Card = ", c)
 	case charge <= c.Balance+c.Point:
 		tmp = charge - c.Point
 		c.Point = 0
 		c.Balance -= tmp
-		fmt.Println("*Card = ", c)
-
-		// 料金 > 所持金だった場合、Cardは消費されない
+		//fmt.Println("*Card = ", c)
 	}
 }
