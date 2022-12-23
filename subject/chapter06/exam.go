@@ -35,11 +35,9 @@ func (n AhoNumber) Call() string {
 func Nabeatsu(n int) []string {
 
 	numAry := make([]string, n)
-	var countNum AhoNumber = 1
 
-	for int(countNum) <= n {
+	for countNum := AhoNumber(1); int(countNum) <= n; countNum++ {
 		numAry[countNum-1] = countNum.Call()
-		countNum++
 	}
 
 	// TODO: 実装
