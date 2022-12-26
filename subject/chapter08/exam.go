@@ -1,5 +1,7 @@
 package chapter08
 
+import "math"
+
 type Car interface {
 	PricePer15Minutes() int
 	MaxPrice() int
@@ -36,27 +38,13 @@ func (premium Premium) MaxPrice() int {
 }
 
 func Calc(car Car, minutes int) int {
+	resetCount := minutes / 360
+	pricePer6Reset := car.MaxPrice() * resetCount
+	pricePer15Minutes := car.PricePer15Minutes() * int(math.Ceil(float64(minutes%360)/15))
 
-	hours := minutes / 60
-	if hours >= 6 {
-		resetCount := minutes / 360
-		overMinutes := minutes - resetCount*360
-		pricePer15Minutes := overMinutes / 15
-		basePrice := (pricePer15Minutes + 1) * car.PricePer15Minutes()
-		if basePrice >= car.MaxPrice() {
-			return car.MaxPrice() + resetCount*car.MaxPrice()
-		}
-		return resetCount*car.MaxPrice() + basePrice
+	if pricePer15Minutes >= car.MaxPrice() {
+		return pricePer6Reset + car.MaxPrice()
 	}
 
-	pricePer15Minutes := minutes / 15
-	basePrice := (pricePer15Minutes + 1) * car.PricePer15Minutes()
-	if hours < 6 && basePrice > car.MaxPrice() {
-		return car.MaxPrice()
-	}
-	if pricePer15Minutes+1 > 0 {
-		return (pricePer15Minutes + 1) * car.PricePer15Minutes()
-	}
-
-	return basePrice
+	return pricePer6Reset + pricePer15Minutes
 }
