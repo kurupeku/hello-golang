@@ -1,6 +1,8 @@
 package chapter09
 
-import "github.com/kurupeku/hello-golang/helper"
+import (
+	"github.com/kurupeku/hello-golang/helper"
+)
 
 type Fare struct {
 	From string
@@ -8,26 +10,103 @@ type Fare struct {
 }
 
 func (f *Fare) innerDistance() int {
-	// TODO: 内回りの距離を返すように実装
-	return 0
+	if f.From == f.To {
+		return 0
+	}
+
+	distance := 0
+	ns := f.From
+
+	for {
+		ns = helper.InnerNextStation(ns)
+		distance += helper.InnerLoopDistance(ns)
+		if ns == f.To {
+			break
+		}
+	}
+
+	return distance
 }
 
 func (f *Fare) outerDistance() int {
-	// TODO: 外回りの距離を返すように実装
-	return 0
+	if f.From == f.To {
+		return 0
+	}
+
+	distance := 0
+	ns := f.From
+
+	for {
+		ns = helper.OuterNextStation(ns)
+		distance += helper.OuterLoopDistance(ns)
+		if ns == f.To {
+			break
+		}
+	}
+
+	return distance
 }
 
 func (f *Fare) distance() int {
-	// 内回りと外回りの距離を比較し、短い方を返すように実装
-	return 0
+	distance := 0
+	i := f.innerDistance()
+	o := f.outerDistance()
+
+	if i < o {
+		distance = i
+	} else {
+		distance = o
+	}
+
+	return distance
 }
 
 func (f *Fare) TicketCharge() int {
-	// TODO: 切符の料金を返すように実装
-	return 0
+	fare := 0
+	distance := f.distance()
+
+	if distance < 4000 {
+		fare = 140
+	} else if distance < 7000 {
+		fare = 160
+	} else if distance < 11000 {
+		fare = 170
+	} else if distance < 16000 {
+		fare = 200
+	} else if distance < 21000 {
+		fare = 270
+	} else if distance < 26000 {
+		fare = 350
+	} else if distance < 31000 {
+		fare = 420
+	} else {
+		fare = 490
+	}
+
+	return fare
 }
 
 func (f *Fare) CardCharge() int {
-	// TODO: IC カードの料金を返すように実装
-	return 0
+	fare := 0
+	distance := f.distance()
+
+	if distance < 4000 {
+		fare = 136
+	} else if distance < 7000 {
+		fare = 157
+	} else if distance < 11000 {
+		fare = 168
+	} else if distance < 16000 {
+		fare = 198
+	} else if distance < 21000 {
+		fare = 264
+	} else if distance < 26000 {
+		fare = 341
+	} else if distance < 31000 {
+		fare = 418
+	} else {
+		fare = 484
+	}
+
+	return fare
 }

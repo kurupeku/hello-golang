@@ -16,3 +16,24 @@ type Card struct {
 	Balance int
 	Point   int
 }
+
+func (t *Ticket) Amount() int {
+	return t.Price
+}
+
+func (t *Ticket) Use(charge int) {
+	t.Price -= charge
+	t.Used = true
+}
+
+func (c *Card) Amount() int {
+	return c.Balance + c.Point
+}
+
+func (c *Card) Use(charge int) {
+	c.Point -= charge
+	if c.Point < 0 {
+		c.Balance += c.Point
+		c.Point = 0
+	}
+}
