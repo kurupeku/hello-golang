@@ -6,6 +6,15 @@ type Card struct {
 }
 
 func Kaisatsu(charge int, card *Card) bool {
-	// TODO: 実装
-	return false
+	if charge > (card.Balance + card.Point) {
+		return false
+	}
+
+	if card.Point > charge {
+		card.Point -= charge
+	} else {
+		card.Balance -= (charge - card.Point)
+		card.Point = 0
+	}
+	return true
 }
