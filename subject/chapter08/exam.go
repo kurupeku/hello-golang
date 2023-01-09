@@ -18,8 +18,18 @@ func Calc(car Car, minutes int) int {
 	// 料金=(minutes / 15)の整数部分 * PricePer15Minutes
 	// if 料金 >= MaxPrice
 	//
+	max_price_times := minutes / 360
+	price := car.MaxPrice() * max_price_times
 
-	return 0
+	amari := minutes % 360
+	price_times := amari/15 + 1
+	amari_price := price_times * car.PricePer15Minutes()
+	if amari_price > car.MaxPrice() {
+		amari_price = car.MaxPrice()
+	}
+	price += amari_price
+	return price
+
 }
 
 func (Basic) PricePer15Minutes() int {
