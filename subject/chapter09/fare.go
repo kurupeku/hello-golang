@@ -8,26 +8,91 @@ type Fare struct {
 }
 
 func (f *Fare) innerDistance() int {
-	// TODO: 内回りの距離を返すように実装
-	return 0
+	var totalDistance int
+	var station = f.From
+	var nextStation string
+
+	for {
+		if station == f.To {
+			break
+		}
+		nextStation = helper.InnerNextStation(station)
+		totalDistance += helper.InnerLoopDistance(nextStation)
+		station = nextStation
+	}
+	return totalDistance
 }
 
 func (f *Fare) outerDistance() int {
-	// TODO: 外回りの距離を返すように実装
-	return 0
+	var totalDistance int
+	var station = f.From
+	var nextStation string
+
+	for {
+		if station == f.To {
+			break
+		}
+		nextStation = helper.InnerNextStation(station)
+		totalDistance += helper.InnerLoopDistance(nextStation)
+		station = nextStation
+	}
+	return totalDistance
 }
 
 func (f *Fare) distance() int {
-	// 内回りと外回りの距離を比較し、短い方を返すように実装
-	return 0
+	inner := f.innerDistance()
+	outer := f.outerDistance()
+	if inner <= outer {
+		return inner
+	} else {
+		return outer
+	}
 }
 
 func (f *Fare) TicketCharge() int {
-	// TODO: 切符の料金を返すように実装
-	return 0
+	totalDistance := f.distance()
+	switch {
+	case totalDistance == 0:
+		return 0
+	case totalDistance < 4000:
+		return 140
+	case totalDistance < 7000:
+		return 160
+	case totalDistance < 11000:
+		return 170
+	case totalDistance < 16000:
+		return 200
+	case totalDistance < 21000:
+		return 270
+	case totalDistance < 26000:
+		return 350
+	case totalDistance < 31000:
+		return 420
+	default:
+		return 490
+	}
 }
 
 func (f *Fare) CardCharge() int {
-	// TODO: IC カードの料金を返すように実装
-	return 0
+	totalDistance := f.distance()
+	switch {
+	case totalDistance == 0:
+		return 0
+	case totalDistance < 4000:
+		return 136
+	case totalDistance < 7000:
+		return 157
+	case totalDistance < 11000:
+		return 168
+	case totalDistance < 16000:
+		return 198
+	case totalDistance < 21000:
+		return 264
+	case totalDistance < 26000:
+		return 341
+	case totalDistance < 31000:
+		return 418
+	default:
+		return 484
+	}
 }
