@@ -1,6 +1,7 @@
 package chapter07
 
 import (
+	"fmt"
 	"sort"
 )
 
@@ -27,9 +28,32 @@ func (c *Casher) itemNames() []string {
 
 func (c *Casher) Purchase(item *Item) {
 	// TODO: 実装
+
+	switch {
+	case c.List == nil:
+		c.List = make(map[string]int)
+	}
+
+	switch {
+	case c.List[item.Name] != 0:
+		c.List[item.Name] = c.List[item.Name] + item.Price
+	default:
+		c.List[item.Name] = item.Price
+	}
+
+	total_price := &c.TotalPrice
+	c.TotalPrice = *total_price + item.Price
 }
 
 func (c *Casher) Receipt() string {
 	// TODO: 実装
-	return ""
+
+	printer := "\nラーメン道 楽酢\n"
+	for _, i := range c.itemNames() {
+		printer = fmt.Sprintf(printer+"\n%-10s:%9d", i, c.List[i])
+	}
+	printer += "\n--------------------"
+	printer = fmt.Sprintf(printer+"\n%20d\n", c.TotalPrice)
+
+	return printer
 }
