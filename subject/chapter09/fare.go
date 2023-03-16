@@ -1,8 +1,6 @@
 package chapter09
 
 import (
-	"fmt"
-
 	"github.com/kurupeku/hello-golang/helper"
 )
 
@@ -24,7 +22,7 @@ func (f *Fare) innerDistance() int {
 		return mileage
 	}
 
-	for {
+	for i := 0; i < 30; i++ {
 		nextStation := helper.InnerNextStation(currentStation)
 		mileage += helper.InnerLoopDistance(nextStation)
 		currentStation = nextStation
@@ -49,7 +47,7 @@ func (f *Fare) outerDistance() int {
 		return mileage
 	}
 
-	for {
+	for i := 0; i < 30; i++ {
 		nextStation := helper.OuterNextStation(currentStation)
 		mileage += helper.OuterLoopDistance(nextStation)
 		currentStation = nextStation
@@ -82,8 +80,6 @@ func (f *Fare) TicketCharge() int {
 
 	mileage := f.distance()
 
-	fmt.Printf("mileage : %d\n", mileage)
-
 	if mileage <= 0 {
 		price = 0
 	} else if mileage <= 3999 {
@@ -114,8 +110,6 @@ func (f *Fare) CardCharge() int {
 	var price int
 
 	mileage := f.distance()
-
-	fmt.Printf("mileage : %d\n", mileage)
 
 	if mileage <= 0 {
 		price = 0

@@ -2,7 +2,6 @@ package chapter09
 
 import (
 	"errors"
-	"fmt"
 )
 
 func Kaisatsu(from, to string, charger Charger) (bool, error) {
@@ -20,8 +19,6 @@ func Kaisatsu(from, to string, charger Charger) (bool, error) {
 	case *Card:
 		price = fare.CardCharge()
 	}
-
-	fmt.Printf("price : %d\n", price)
 
 	// 利用料金が0の場合はエラーを返す
 	if price == 0 {
