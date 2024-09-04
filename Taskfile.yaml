@@ -16,12 +16,6 @@ tasks:
       - go test -v ./{{.CLI_ARGS | default "..."}}
     silent: true
 
-  docker-build:
-    desc: Build Docker Image
-    cmds:
-      - docker buildx build --tag {{.IMAGE_NAME}} .
-    silent: true
-
   marp:
     cmds:
       - docker run --rm -v $PWD/assets/marp:/home/marp/app/ -e MARP_USER="$(id -u):$(id -g)" -e LANG=$LANG marpteam/marp-cli --html true {{.CLI_ARGS}}
