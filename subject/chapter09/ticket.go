@@ -11,6 +11,14 @@ type Ticket struct {
 	Used  bool
 }
 
+func (t *Ticket) Amount() int {
+	return t.Price
+}
+
+func (t *Ticket) Use(int) {
+	t.Used = true
+}
+
 // Charger を満たすようにメソッドを追加する
 type Card struct {
 	Balance int
