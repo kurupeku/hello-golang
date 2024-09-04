@@ -95,14 +95,12 @@ Push 後に走る CI が無事に通れば課題クリアです。
 `chapterXX` というディレクトリがあり、その中に各課題とそのテストが格納されています。
 chapter ごとの課題の詳細が README.md に記載されているので、そちらを参照して実装を行ってください。
 
-::: info
-`feature/subject-examples` というブランチに模範解答があります。
-こちらは基本的に解説時に使用するため、自分で実装する前に見るのはおすすめしません。
-:::
+> [!INFO]
+> `feature/subject-examples` というブランチに模範解答があります。
+> こちらは基本的に解説時に使用するため、自分で実装する前に見るのはおすすめしません。
 
-::: warning
-PR を出したり、 `main` および `feature/subject-examples` に直接コミットするのは禁止です。
-:::
+> [!WARNING]
+> PR を出したり、 `main` および `feature/subject-examples` に直接コミットするのは禁止です。
 
 ### テストの実行
 
