@@ -1,4 +1,4 @@
-FROM golang:bullseye
+FROM golang:1.23.0
 
 LABEL maintainer "kurupeku <y.u.kurupeku@gmail.com>"
 
