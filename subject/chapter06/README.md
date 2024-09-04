@@ -16,7 +16,7 @@
 
 ### 数字の文字列化
 
-各数字の文字列化に関しては、定義済みの `type AhoNumber uint` と、そこに定義済みのメソッド `func (AhoNumber) Call()` を利用してください。
+各数字の文字列化に関しては、定義済みの `type AhoNumber uint` のメソッド `func (AhoNumber) Call()` を実装してください。
 
 e.g.)
 
