@@ -25,10 +25,12 @@ func (c *Casher) itemNames() []string {
 	return keys
 }
 
+// 購入した商品 item の名前と金額を記録してください
 func (c *Casher) Purchase(item *Item) {
 	// TODO: 実装
 }
 
+// 購入した商品のレシートを規定のフォーマットに沿った文字列として返してください
 func (c *Casher) Receipt() string {
 	// TODO: 実装
 	return ""
