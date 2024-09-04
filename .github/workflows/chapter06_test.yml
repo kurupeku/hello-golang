@@ -3,31 +3,15 @@ name: Testing Chapter 06
 on:
   workflow_dispatch:
   push:
+    branches-ignore:
+      - main
     paths:
       - "subject/chapter06/**.go"
-
-env:
-  TARGET: chapter06
 
 jobs:
   testing:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Go
-        uses: actions/setup-go@v3
+      - uses: './.github/actions/test'
         with:
-          go-version-file: go.mod
-
-      - id: result
-        name: Go Test
-        run: go test -v ./subject/${TARGET}
-
-      - name: Send result
-        if: always()
-        run: |
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            -d '{"account" : "${{ github.actor }}" , "chapter" : "${{ env.TARGET }}", "result": "${{ steps.result.conclusion }}"}' \
-            ${{ secrets.RESULT_API }}
+          target: chapter06

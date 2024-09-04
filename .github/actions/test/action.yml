@@ -1,0 +1,19 @@
+name: Ge Test
+inputs:
+  target:
+    description: 'The target chapter name'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version-file: go.mod
+
+    - name: Go Test
+      run: go test -v ./subject/${{ inputs.target }}
