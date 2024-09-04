@@ -22,37 +22,6 @@ tasks:
       - docker buildx build --tag {{.IMAGE_NAME}} .
     silent: true
 
-  docker-bash:
-    desc: Connect via Bash into container
-    cmds:
-      - docker run -it --rm -v ${PWD}:/go/src/app {{.IMAGE_NAME}} bash
-    silent: true
-
-  docker-zsh:
-    desc: Connect via Zsh into container
-    cmds:
-      - docker run -it --rm -v ${PWD}:/go/src/app {{.IMAGE_NAME}} zsh
-    silent: true
-
-  docker-test:
-    desc: Execute testing via Docker
-    cmds:
-      - docker run --rm -v ${PWD}:/go/src/app {{.IMAGE_NAME}} go test -v ./{{.CLI_ARGS | default "..."}}
-    silent: true
-
-  docker-build-test:
-    desc: Execute building Docker Image and testing on Container
-    cmds:
-      - task: docker-build
-      - task: docker-test
-    silent: true
-
-  docker-prune:
-    desc: Remove Docker resources
-    cmds:
-      - docker system prune -f
-    silent: true
-
   marp:
     cmds:
       - docker run --rm -v $PWD/assets/marp:/home/marp/app/ -e MARP_USER="$(id -u):$(id -g)" -e LANG=$LANG marpteam/marp-cli --html true {{.CLI_ARGS}}
