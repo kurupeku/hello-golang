@@ -130,3 +130,6 @@ tags
 [._]*.un~
 
 tmp/
+
+# JetBrains
+.idea/
