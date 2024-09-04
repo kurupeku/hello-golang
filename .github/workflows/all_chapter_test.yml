@@ -1,0 +1,13 @@
+name: Testing All Chapters
+on:
+  workflow_dispatch:
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: './.github/actions/test'
+        with:
+          target: ...
