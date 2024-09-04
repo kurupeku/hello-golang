@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - GOENV=dev
+      - GOPATH=/go
+      - GOBIN=/go/bin
+      - ROOT=/go/src/app
+      - CGO_ENABLED=0
+    volumes:
+      - .:/go/src/app
+    command: [ "tail", "-f", "/dev/null" ]

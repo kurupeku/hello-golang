@@ -12,8 +12,7 @@ ENV PACKAGES zsh neovim git curl jq ripgrep
 
 WORKDIR ${ROOT}
 
-RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.list \
-  && apt-get update \
+RUN  apt-get update \
   && apt-get install -y --no-install-recommends ${PACKAGES} \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
