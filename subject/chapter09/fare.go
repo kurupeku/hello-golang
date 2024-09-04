@@ -1,12 +1,11 @@
 package chapter09
 
-import "github.com/kurupeku/hello-golang/helper"
-
 type Fare struct {
 	From string
 	To   string
 }
 
+// 内回りの距離を返すように実装してください
 func (f *Fare) innerDistance() int {
 	if f.From == f.To {
 		return 0
@@ -25,6 +24,7 @@ func (f *Fare) innerDistance() int {
 	return dist
 }
 
+// 外回りの距離を返すように実装してください
 func (f *Fare) outerDistance() int {
 	if f.From == f.To {
 		return 0
@@ -43,6 +43,7 @@ func (f *Fare) outerDistance() int {
 	return dist
 }
 
+// 内回りと外回りの距離を比較し、短い方の距離を返すように実装してください
 func (f *Fare) distance() int {
 	id := f.innerDistance()
 	od := f.outerDistance()
@@ -54,6 +55,7 @@ func (f *Fare) distance() int {
 	return id
 }
 
+// 切符の料金を返すように実装してください
 func (f *Fare) TicketCharge() int {
 	dist := f.distance()
 	switch {
@@ -78,6 +80,7 @@ func (f *Fare) TicketCharge() int {
 	}
 }
 
+// IC カードの料金を返すように実装してください
 func (f *Fare) CardCharge() int {
 	dist := f.distance()
 	switch {

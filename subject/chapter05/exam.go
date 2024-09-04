@@ -2,6 +2,7 @@ package chapter05
 
 import "math"
 
+// 渡された `Slice` の真ん中の要素をふっ飛ばした `Slice` を返す関数を実装してください
 func DarumaDrop(daruma []int) []int {
 	l := len(daruma)
 	if l <= 1 {
@@ -22,6 +23,7 @@ func DarumaDrop(daruma []int) []int {
 	return newDaruma
 }
 
+// 渡された `Slice` 同士をかけ合わせた `Slice in Slice` の二次元配列を返す関数を実装してください
 func MatrixMultiple(seed []int) [][]int {
 	mtx := make([][]int, 0, len(seed))
 	for _, v1 := range seed {

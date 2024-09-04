@@ -5,7 +5,7 @@ type Charger interface {
 	Use(charge int)
 }
 
-// Charger を満たすようにメソッドを追加する
+// Charger を満たすようにメソッドを定義し、その実装してください
 type Ticket struct {
 	Price int
 	Used  bool
@@ -19,7 +19,7 @@ func (t *Ticket) Use(int) {
 	t.Used = true
 }
 
-// Charger を満たすようにメソッドを追加する
+// Charger を満たすようにメソッドを定義し、その実装してください
 type Card struct {
 	Balance int
 	Point   int
